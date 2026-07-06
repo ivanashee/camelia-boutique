@@ -7,7 +7,7 @@ export default async function NuevoProductoPage() {
   return (
     <AdminChrome>
       <h1 className="font-serif text-3xl text-ink mb-6">Nuevo producto</h1>
-      <form action={saveProduct.bind(null, null) as any} className="grid md:grid-cols-2 gap-4 bg-cream border border-champagne rounded-xl p-6 max-w-3xl">
+      <form action={saveProduct} className="grid md:grid-cols-2 gap-4 bg-cream border border-champagne rounded-xl p-6 max-w-3xl">
         <div><label className="label">Nombre</label><input name="name" required className="input" /></div>
         <div><label className="label">Slug</label><input name="slug" required className="input" placeholder="saco-camelia" /></div>
         <div>

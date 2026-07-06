@@ -1,12 +1,13 @@
 "use server";
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { serverClient } from "@/lib/supabase";
 import { isAdmin } from "@/lib/admin-auth";
 
-export async function saveProduct(prev: any, fd: FormData) {
-  if (!isAdmin()) return { ok: false, error: "No autorizado" };
+export async function saveProduct(fd: FormData): Promise<void> {
+  if (!isAdmin()) redirect("/admin/login");
   const sb = serverClient();
-  if (!sb) return { ok: false, error: "Supabase no configurado" };
+  if (!sb) redirect("/admin/productos?error=no-supabase");
   const payload = {
     name: String(fd.get("name") || ""),
     slug: String(fd.get("slug") || ""),
@@ -20,27 +21,25 @@ export async function saveProduct(prev: any, fd: FormData) {
   };
   const id = String(fd.get("id") || "");
   const { error } = id
-    ? await sb.from("products").update(payload).eq("id", id)
-    : await sb.from("products").insert(payload);
-  if (error) return { ok: false, error: error.message };
+    ? await sb!.from("products").update(payload).eq("id", id)
+    : await sb!.from("products").insert(payload);
+  if (error) redirect(`/admin/productos?error=${encodeURIComponent(error.message)}`);
   revalidatePath("/admin/productos");
-  return { ok: true };
+  redirect("/admin/productos");
 }
 
-export async function deleteProduct(id: string) {
-  if (!isAdmin()) return { ok: false };
+export async function deleteProduct(id: string): Promise<void> {
+  if (!isAdmin()) return;
   const sb = serverClient();
-  if (!sb) return { ok: false };
+  if (!sb) return;
   await sb.from("products").delete().eq("id", id);
   revalidatePath("/admin/productos");
-  return { ok: true };
 }
 
-export async function toggleProductActive(id: string, active: boolean) {
-  if (!isAdmin()) return { ok: false };
+export async function toggleProductActive(id: string, active: boolean): Promise<void> {
+  if (!isAdmin()) return;
   const sb = serverClient();
-  if (!sb) return { ok: false };
+  if (!sb) return;
   await sb.from("products").update({ active }).eq("id", id);
   revalidatePath("/admin/productos");
-  return { ok: true };
 }

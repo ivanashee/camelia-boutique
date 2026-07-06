@@ -1,7 +1,7 @@
 import Ornament from "@/components/Ornament";
 import { loginAction } from "./actions";
 
-export default function AdminLoginPage() {
+export default function AdminLoginPage({ searchParams }: { searchParams: { error?: string } }) {
   return (
     <section className="min-h-[70vh] flex items-center justify-center px-5">
       <form
@@ -13,6 +13,11 @@ export default function AdminLoginPage() {
         </div>
         <div className="eyebrow mb-1">— Panel</div>
         <h1 className="font-serif text-3xl text-ink mb-6">Ingresar</h1>
+        {searchParams?.error && (
+          <div className="text-sm text-rose bg-blush/40 border border-rose/30 rounded-md px-3 py-2 mb-4">
+            Credenciales inválidas
+          </div>
+        )}
         <label className="label">Email</label>
         <input name="email" type="email" required className="input mb-4" defaultValue="admin@camelia.py" />
         <label className="label">Contraseña</label>
