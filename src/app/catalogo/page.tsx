@@ -79,7 +79,7 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
             name="q"
             defaultValue={searchParams.q || ""}
             placeholder="Buscar"
-            className="flex-1 bg-transparent border-0 outline-none text-sm py-2 min-w-0 placeholder:text-thyme/60"
+            className="flex-1 bg-transparent border-0 outline-none text-sm py-2 min-w-0 placeholder:text-thyme/60 placeholder:italic placeholder:font-serif"
           />
           <span className="h-6 w-px bg-champagne hidden md:block" aria-hidden />
           <div className="hidden md:block px-2">
