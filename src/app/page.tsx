@@ -102,7 +102,24 @@ export default async function HomePage() {
                 Comprá por <span className="italic text-rose">estilo</span>
               </h2>
             </div>
-            <Link href="/catalogo" className="text-sm text-thyme border-b border-thyme">Ver todas →</Link>
+            {/* Botón 'Ver todas' con animación floral */}
+            <Link
+              href="/catalogo"
+              className="group relative inline-flex items-center gap-2 text-sm text-thyme hover:text-rose transition-colors pb-1.5"
+            >
+              <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-rose">
+                ✿
+              </span>
+              <span className="tracking-wide">Ver todas</span>
+              <span className="inline-block group-hover:translate-x-2 transition-transform duration-300">
+                →
+              </span>
+              {/* Línea inferior que se pinta de rosa progresivamente */}
+              <span className="absolute left-0 bottom-0 h-px w-full bg-thyme" />
+              <span className="absolute left-0 bottom-0 h-px w-0 bg-rose group-hover:w-full transition-all duration-500 ease-out" />
+              {/* Puntito floral que aparece al final */}
+              <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 rounded-full bg-rose opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-500" />
+            </Link>
           </div>
         </Reveal>
 
@@ -111,6 +128,7 @@ export default async function HomePage() {
             const bg = ["#F0C4CB", "#FBEAD6", "#E5BCA9", "#6B7556", "#C87D87"][i % 5];
             const isDark = i >= 3;
             const img = CATEGORY_IMG[c.slug];
+            const textColor = isDark ? "#FFFFFF" : "#3a2f2a";
             return (
               <StaggerItem key={c.id}>
                 <Link
@@ -118,7 +136,7 @@ export default async function HomePage() {
                   className="group relative block overflow-hidden rounded-2xl p-6 h-40 md:h-48 hover:-translate-y-1 transition-transform duration-500"
                   style={{
                     background: bg,
-                    color: isDark ? "#FBEAD6" : "#3a2f2a",
+                    color: textColor,
                   }}
                 >
                   {/* Foto de fondo — mix-blend-luminosity conserva el color */}

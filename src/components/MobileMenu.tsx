@@ -8,6 +8,7 @@ import Ornament from "./Ornament";
 const links = [
   { href: "/", label: "Inicio" },
   { href: "/catalogo", label: "Catálogo" },
+  { href: "/quienes-somos", label: "Quiénes somos" },
   { href: "/catalogo?sale=1", label: "Rebajas", accent: true },
   { href: "/favoritos", label: "Favoritos" },
   { href: "/carrito", label: "Carrito" },

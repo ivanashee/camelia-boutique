@@ -33,6 +33,8 @@ export default function Header() {
           <span className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo">Catálogo</NavLink>
           <span className="text-rose/50 text-xs">✿</span>
+          <NavLink href="/quienes-somos">Nosotros</NavLink>
+          <span className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo?sale=1" className="text-rose">Rebajas</NavLink>
         </nav>
 

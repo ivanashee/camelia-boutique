@@ -1,19 +1,9 @@
-import LogoMark from "./LogoMark";
 import NavLink from "./NavLink";
 import Ornament from "./Ornament";
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-thyme text-champagne mt-20">
-      {/* Franja curva superior con camelias */}
-      <div className="relative border-b border-champagne/15">
-        <div className="max-w-6xl mx-auto px-5 md:px-8 py-6 flex items-center justify-center gap-5">
-          <div className="h-px bg-champagne/30 flex-1 max-w-[240px]" />
-          <LogoMark size={56} tone="blush" />
-          <div className="h-px bg-champagne/30 flex-1 max-w-[240px]" />
-        </div>
-      </div>
-
       {/* Ornamento decorativo */}
       <div className="absolute -bottom-10 right-6 opacity-25 pointer-events-none">
         <Ornament
@@ -67,6 +57,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             <li><NavLink variant="footer" href="/catalogo">Catálogo</NavLink></li>
             <li><NavLink variant="footer" href="/catalogo?sale=1">Rebajas</NavLink></li>
+            <li><NavLink variant="footer" href="/quienes-somos">Quiénes somos</NavLink></li>
             <li><NavLink variant="footer" href="/favoritos">Favoritos</NavLink></li>
             <li><NavLink variant="footer" href="/carrito">Carrito</NavLink></li>
           </ul>
