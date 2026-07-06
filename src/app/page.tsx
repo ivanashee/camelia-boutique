@@ -182,10 +182,16 @@ export default async function HomePage() {
                     />
                   </div>
 
-                  <div className="relative font-serif italic text-xs opacity-80 drop-shadow-sm">
+                  <div
+                    className="relative font-serif italic text-xs opacity-80 drop-shadow-sm"
+                    style={{ color: textColor }}
+                  >
                     0{i + 1}
                   </div>
-                  <div className="relative font-serif text-xl md:text-2xl mt-20 md:mt-24 drop-shadow-md">
+                  <div
+                    className="relative font-serif text-xl md:text-2xl mt-20 md:mt-24 drop-shadow-md"
+                    style={{ color: textColor }}
+                  >
                     {c.name}
                   </div>
                 </Link>

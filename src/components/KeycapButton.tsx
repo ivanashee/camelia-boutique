@@ -60,7 +60,7 @@ export default function KeycapButton() {
           relative w-14 h-14 md:w-16 md:h-16 rounded-2xl
           border border-champagne
           bg-gradient-to-b from-cream via-[#fbead6] to-[#f2dccc]
-          flex items-baseline justify-center gap-0.5 pt-3
+          flex items-center justify-center
           transition-all duration-150 ease-out
           ${pressed ? "translate-y-[9px]" : "hover:-translate-y-1"}
         `}
@@ -72,13 +72,20 @@ export default function KeycapButton() {
         {/* Sombra interna sutil abajo — profundidad */}
         <span className="absolute inset-x-2 bottom-1 h-2 rounded-full bg-black/[0.04] blur-sm pointer-events-none" />
 
-        {/* La C. — misma tipografía que el logo (font-serif regular) */}
-        <span className="font-serif text-[28px] md:text-[32px] text-ink leading-none select-none">
-          C
-        </span>
-        <span className="font-serif text-[28px] md:text-[32px] text-rose leading-none select-none">
-          .
-        </span>
+        {/* Chevron ^ ancho — dibujado en SVG con ángulo abierto (~130°) */}
+        <svg
+          viewBox="0 0 40 22"
+          width="28"
+          height="16"
+          fill="none"
+          stroke="#3a2f2a"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
+          <path d="M 5 18 L 20 6 L 35 18" />
+        </svg>
       </div>
     </button>
   );
