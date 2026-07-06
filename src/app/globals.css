@@ -44,6 +44,46 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
+/* Dual range slider — dos <input type="range"> superpuestos */
+.range-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transform: translateY(-50%);
+}
+.range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #C87D87;
+  border: 3px solid #FFFDFA;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.range-thumb::-moz-range-thumb {
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #C87D87;
+  border: 3px solid #FFFDFA;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.range-thumb::-webkit-slider-runnable-track { background: transparent; }
+.range-thumb::-moz-range-track { background: transparent; }
+
 .badge { @apply inline-block text-[10px] uppercase tracking-widest rounded-full px-2.5 py-1 font-medium; }
 .badge-active   { @apply bg-thyme/15 text-thyme; }
 .badge-inactive { @apply bg-ink/10 text-ink/80; }

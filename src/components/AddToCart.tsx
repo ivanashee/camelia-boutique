@@ -8,9 +8,34 @@ export default function AddToCart({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const disabled = product.stock === 0;
+  const sizes = product.sizes ?? [];
+  const requiresSize = sizes.length > 0;
+  const [size, setSize] = useState<string>(requiresSize ? sizes[0] : "");
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-4">
+      {requiresSize && (
+        <div>
+          <div className="label">Talle</div>
+          <div className="flex flex-wrap gap-2">
+            {sizes.map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setSize(s)}
+                className={`min-w-[44px] px-3 py-2 rounded-full border text-sm transition ${
+                  size === s
+                    ? "bg-ink text-champagne border-ink"
+                    : "bg-cream text-ink border-bisque hover:border-thyme"
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex items-center gap-3">
         <div className="label !mb-0">Cantidad</div>
         <div className="inline-flex items-center border border-bisque rounded-full">
@@ -27,14 +52,16 @@ export default function AddToCart({ product }: { product: Product }) {
           >+</button>
         </div>
       </div>
+
       <button
         className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={disabled}
         onClick={() => {
+          const displayName = size ? `${product.name} (${size})` : product.name;
           add({
-            productId: product.id,
+            productId: size ? `${product.id}::${size}` : product.id,
             slug: product.slug,
-            name: product.name,
+            name: displayName,
             price: product.price,
             qty,
             stock: product.stock,

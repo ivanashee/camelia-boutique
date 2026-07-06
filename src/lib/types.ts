@@ -18,6 +18,8 @@ export type Product = {
   featured: boolean;
   active: boolean;
   category?: Category | null;
+  discount?: number; // 0-100 % (0 = sin rebaja)
+  sizes?: string[]; // ["XS","S","M","L","XL"] o [] para accesorios
 };
 
 export type CartItem = {

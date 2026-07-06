@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToCart from "@/components/AddToCart";
+import FavoriteButton from "@/components/FavoriteButton";
 import Ornament from "@/components/Ornament";
 import ProductCard from "@/components/ProductCard";
 import { getProductBySlug, getRelated } from "@/lib/data";
@@ -40,9 +41,26 @@ export default async function ProductoPage({ params }: { params: { slug: string 
         </div>
 
         <div>
-          <div className="eyebrow">{p.category?.name ?? "Producto"}</div>
-          <h1 className="font-serif text-4xl md:text-5xl text-ink mt-2">{p.name}</h1>
-          <div className="text-2xl text-rose font-medium mt-3">{formatGs(p.price)}</div>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="eyebrow">{p.category?.name ?? "Producto"}</div>
+              <h1 className="font-serif text-4xl md:text-5xl text-ink mt-2">{p.name}</h1>
+            </div>
+            <FavoriteButton productId={p.id} size={22} className="!p-3" />
+          </div>
+          <div className="mt-3 flex items-baseline gap-3">
+            {p.discount && p.discount > 0 ? (
+              <>
+                <span className="text-2xl text-rose font-medium">
+                  {formatGs(Math.round(p.price * (1 - p.discount / 100)))}
+                </span>
+                <span className="text-base text-thyme line-through">{formatGs(p.price)}</span>
+                <span className="badge badge-critical">-{p.discount}%</span>
+              </>
+            ) : (
+              <span className="text-2xl text-rose font-medium">{formatGs(p.price)}</span>
+            )}
+          </div>
           <p className="text-muted mt-5 leading-relaxed">{p.description}</p>
           <div className="text-xs text-thyme mt-4">
             {p.stock > 0 ? `${p.stock} unidades disponibles` : "Sin stock por ahora"}

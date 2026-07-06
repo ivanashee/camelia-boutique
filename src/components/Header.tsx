@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CartBadge from "./CartBadge";
+import FavoritesBadge from "./FavoritesBadge";
 import NavLink from "./NavLink";
 import Ornament from "./Ornament";
 
@@ -31,7 +32,7 @@ export default function Header() {
           <span className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo">Catálogo</NavLink>
           <span className="text-rose/50 text-xs">✿</span>
-          <NavLink href="/catalogo?cat=accesorios">Accesorios</NavLink>
+          <NavLink href="/catalogo?sale=1" className="text-rose">Rebajas</NavLink>
         </nav>
 
         {/* Íconos derecha */}
@@ -46,6 +47,7 @@ export default function Header() {
               <path d="m20 20-3-3" />
             </svg>
           </Link>
+          <FavoritesBadge />
           <Link
             href="/admin"
             aria-label="Admin"

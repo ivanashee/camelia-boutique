@@ -27,9 +27,12 @@ create table if not exists boutique.products (
   images       text[] not null default '{}',
   featured     boolean not null default false,
   active       boolean not null default true,
+  discount     integer not null default 0 check (discount >= 0 and discount <= 100),
+  sizes        text[] not null default '{}',
   created_at   timestamptz not null default now()
 );
 create index if not exists products_category_idx on boutique.products(category_id);
+create index if not exists products_discount_idx on boutique.products(discount) where discount > 0;
 create index if not exists products_featured_idx on boutique.products(featured) where featured;
 create index if not exists products_active_idx on boutique.products(active) where active;
 
