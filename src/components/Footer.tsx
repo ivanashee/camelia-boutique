@@ -70,7 +70,6 @@ export default function Footer() {
             <li><NavLink variant="footer" href="/catalogo?sale=1">Rebajas</NavLink></li>
             <li><NavLink variant="footer" href="/favoritos">Favoritos</NavLink></li>
             <li><NavLink variant="footer" href="/carrito">Carrito</NavLink></li>
-            <li><NavLink variant="footer" href="/admin">Admin</NavLink></li>
           </ul>
         </div>
 

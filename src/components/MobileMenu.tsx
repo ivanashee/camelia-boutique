@@ -11,7 +11,6 @@ const links = [
   { href: "/catalogo?sale=1", label: "Rebajas", accent: true },
   { href: "/favoritos", label: "Favoritos" },
   { href: "/carrito", label: "Carrito" },
-  { href: "/admin", label: "Admin" },
 ];
 
 export default function MobileMenu() {
