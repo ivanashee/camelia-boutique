@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import FeaturedStack from "@/components/FeaturedStack";
 import Ornament from "@/components/Ornament";
@@ -5,6 +6,16 @@ import { RandomLetterSwapPingPong } from "@/components/RandomLetterSwap";
 import Reveal, { StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ScrollOrnament from "@/components/ScrollOrnament";
 import { getCategories, getProducts } from "@/lib/data";
+
+// Fotos por categoría — Unsplash. Se aplican con mix-blend-luminosity
+// para que el color del cuadrado siga siendo el que manda.
+const CATEGORY_IMG: Record<string, string> = {
+  sacos: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=80",
+  sueteres: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=80",
+  remeras: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+  bufandas: "https://images.unsplash.com/photo-1601924582971-df85fd06681d?auto=format&fit=crop&w=900&q=80",
+  accesorios: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=80",
+};
 
 export default async function HomePage() {
   const [featured, categories] = await Promise.all([
@@ -96,24 +107,73 @@ export default async function HomePage() {
         </Reveal>
 
         <StaggerGroup className="grid grid-cols-2 md:grid-cols-4 gap-4" stagger={0.09}>
-          {categories.map((c, i) => (
-            <StaggerItem key={c.id}>
-              <Link
-                href={`/catalogo?cat=${c.slug}`}
-                className="group relative block overflow-hidden rounded-2xl p-6 h-40 hover:opacity-95 transition-transform hover:-translate-y-1 duration-500"
-                style={{
-                  background: ["#F0C4CB", "#FBEAD6", "#E5BCA9", "#6B7556", "#C87D87"][i % 5],
-                  color: i >= 3 ? "#FBEAD6" : "#3a2f2a",
-                }}
-              >
-                <div className="absolute top-3 right-3 opacity-30 group-hover:rotate-45 transition-transform duration-700">
-                  <Ornament size={80} opacity={0.4} />
-                </div>
-                <div className="font-serif italic text-xs opacity-70">0{i + 1}</div>
-                <div className="font-serif text-xl mt-24">{c.name}</div>
-              </Link>
-            </StaggerItem>
-          ))}
+          {categories.map((c, i) => {
+            const bg = ["#F0C4CB", "#FBEAD6", "#E5BCA9", "#6B7556", "#C87D87"][i % 5];
+            const isDark = i >= 3;
+            const img = CATEGORY_IMG[c.slug];
+            return (
+              <StaggerItem key={c.id}>
+                <Link
+                  href={`/catalogo?cat=${c.slug}`}
+                  className="group relative block overflow-hidden rounded-2xl p-6 h-40 md:h-48 hover:-translate-y-1 transition-transform duration-500"
+                  style={{
+                    background: bg,
+                    color: isDark ? "#FBEAD6" : "#3a2f2a",
+                  }}
+                >
+                  {/* Foto de fondo — mix-blend-luminosity conserva el color */}
+                  {img && (
+                    <div
+                      className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
+                        isDark
+                          ? "mix-blend-soft-light opacity-80 group-hover:opacity-100"
+                          : "mix-blend-luminosity opacity-70 group-hover:opacity-90"
+                      }`}
+                    >
+                      <Image
+                        src={img}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover"
+                        priority={i < 2}
+                      />
+                    </div>
+                  )}
+
+                  {/* Gradiente sutil para que el texto se lea */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: isDark
+                        ? "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%)"
+                        : "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.12) 100%)",
+                    }}
+                  />
+
+                  {/* Ornamento */}
+                  <div className="absolute top-3 right-3 opacity-40 group-hover:rotate-45 group-hover:opacity-70 transition-all duration-700">
+                    <Ornament
+                      size={80}
+                      opacity={0.5}
+                      stroke={isDark ? "#FBEAD6" : "#6B7556"}
+                      fillOuter={isDark ? "#FBEAD6" : "#F0C4CB"}
+                      fillInner={isDark ? "#F0C4CB" : "#C87D87"}
+                      fillLeaf={isDark ? "#FBEAD6" : "#6B7556"}
+                      fillCenter={isDark ? "#FBEAD6" : "#6B7556"}
+                    />
+                  </div>
+
+                  <div className="relative font-serif italic text-xs opacity-80 drop-shadow-sm">
+                    0{i + 1}
+                  </div>
+                  <div className="relative font-serif text-xl md:text-2xl mt-20 md:mt-24 drop-shadow-md">
+                    {c.name}
+                  </div>
+                </Link>
+              </StaggerItem>
+            );
+          })}
         </StaggerGroup>
       </section>
 
