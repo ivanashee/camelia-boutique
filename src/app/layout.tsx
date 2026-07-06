@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import KeycapButton from "@/components/KeycapButton";
 
 export const metadata: Metadata = {
   title: "Camélia Boutique — Moda con alma Art Nouveau",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <KeycapButton />
       </body>
     </html>
   );
