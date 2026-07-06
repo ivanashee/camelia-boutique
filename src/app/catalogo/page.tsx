@@ -2,6 +2,7 @@ import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import Ornament from "@/components/Ornament";
 import PriceRange from "@/components/PriceRange";
+import { StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { getCategories, getProducts } from "@/lib/data";
 import { formatGs } from "@/lib/format";
 
@@ -139,9 +140,13 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
               <div className="text-xs text-thyme mb-4">
                 {list.length} producto{list.length === 1 ? "" : "s"} · desde {formatGs(Math.min(...list.map((p) => p.price)))}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-                {list.map((p) => <ProductCard key={p.id} p={p} />)}
-              </div>
+              <StaggerGroup className="grid grid-cols-2 md:grid-cols-3 gap-5" stagger={0.06} amount={0.05}>
+                {list.map((p) => (
+                  <StaggerItem key={p.id}>
+                    <ProductCard p={p} />
+                  </StaggerItem>
+                ))}
+              </StaggerGroup>
             </>
           )}
         </div>
