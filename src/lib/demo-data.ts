@@ -3,7 +3,7 @@ import type { Category, Product } from "./types";
 // Fallback usado cuando Supabase no está configurado (o falla).
 
 export const demoCategories: Category[] = [
-  { id: "c1", name: "Sacos & Abrigos", slug: "sacos", active: true },
+  { id: "c1", name: "Abrigos", slug: "sacos", active: true },
   { id: "c2", name: "Suéteres", slug: "sueteres", active: true },
   { id: "c3", name: "Remeras", slug: "remeras", active: true },
   { id: "c4", name: "Bufandas", slug: "bufandas", active: true },

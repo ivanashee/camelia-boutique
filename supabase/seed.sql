@@ -2,7 +2,7 @@
 set search_path = boutique, public;
 
 insert into boutique.categories (name, slug, description) values
-  ('Sacos & Abrigos','sacos','Sacos, tapados y abrigos de temporada'),
+  ('Abrigos','sacos','Sacos, tapados y abrigos de temporada'),
   ('Suéteres','sueteres','Suéteres tejidos y de punto'),
   ('Remeras','remeras','Remeras y blusas'),
   ('Bufandas','bufandas','Bufandas y pashminas'),

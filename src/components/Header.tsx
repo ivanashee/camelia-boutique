@@ -9,7 +9,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-champagne">
       {/* Franja decorativa superior */}
       <div className="bg-thyme text-champagne text-[10px] tracking-[0.3em] uppercase text-center py-1.5">
-        Envíos a todo Paraguay · Coordinado por WhatsApp
+        Envíos a todo Paraguay
       </div>
 
       <div className="max-w-6xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between relative">
