@@ -20,12 +20,12 @@ export default function FeaturedStack({ products }: { products: Product[] }) {
         const isHovered = hovered === p.id;
         const noneHovered = hovered === null;
         const flexClass = isHovered
-          ? "flex-[6]"
+          ? "flex-[2.5]"
           : noneHovered
           ? idx === 0
-            ? "flex-[3]"
-            : "flex-[1]"
-          : "flex-[0.6]";
+            ? "flex-[1.4]"
+            : "flex-1"
+          : "flex-[0.85]";
 
         return (
           <Link

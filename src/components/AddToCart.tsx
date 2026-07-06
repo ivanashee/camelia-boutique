@@ -8,7 +8,16 @@ export default function AddToCart({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const disabled = product.stock === 0;
-  const sizes = product.sizes ?? [];
+
+  // Talles: si la DB tiene sizes usalos; sino inferí por categoría.
+  // Sólo indumentaria (sacos, suéteres, remeras) — accesorios y bufandas van sin talles.
+  const CLOTHING_SLUGS = ["sacos", "sueteres", "remeras"];
+  const dbSizes = product.sizes ?? [];
+  const inferSize =
+    dbSizes.length === 0 && CLOTHING_SLUGS.includes(product.category?.slug ?? "")
+      ? ["XS", "S", "M", "L", "XL"]
+      : [];
+  const sizes = dbSizes.length > 0 ? dbSizes : inferSize;
   const requiresSize = sizes.length > 0;
   const [size, setSize] = useState<string>(requiresSize ? sizes[0] : "");
 
