@@ -4,14 +4,13 @@ import FavoritesBadge from "./FavoritesBadge";
 import MobileMenu from "./MobileMenu";
 import NavLink from "./NavLink";
 import Ornament from "./Ornament";
+import PromoBar from "./PromoBar";
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-champagne">
-      {/* Franja decorativa superior */}
-      <div className="bg-thyme text-champagne text-[10px] tracking-[0.3em] uppercase text-center py-1.5">
-        Envíos a todo Paraguay
-      </div>
+      {/* Franja promo — cupón clickeable para copiar */}
+      <PromoBar />
 
       <div className="max-w-6xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between relative">
         {/* Logo con ornamento sutil */}
