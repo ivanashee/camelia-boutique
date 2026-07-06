@@ -2,28 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-// Profundidad 3D — 5 capas de sombras + drop shadow
-const KEY_SHADOW_UP = `
-  0 2px 0 #d6a4ab,
-  0 4px 0 #c4939a,
-  0 6px 0 #b0808a,
-  0 8px 0 #9a6b76,
-  0 10px 0 #855663,
-  0 16px 22px rgba(58, 47, 42, 0.28)
-`;
-
-const KEY_SHADOW_DOWN = `
-  0 1px 0 #d6a4ab,
-  0 2px 0 #b0808a,
-  0 3px 10px rgba(58, 47, 42, 0.22)
-`;
-
 /**
- * Keycap flotante con la C. de Camélia.
- * - Diseño 3D chunky con 5 capas de shadow simulando la profundidad de la tecla
- * - Hover: sube 4px (previa)
- * - Click: se hunde 9px + colapsa las shadows → tacto tipo teclado real
- * - Vibración háptica en mobile + scroll-to-top
+ * Keycap flotante estilo isométrico (inspirado en referencia keycap.avif).
+ * - SVG con 3 caras visibles: top cream, lado izquierdo bisque oscuro, frente blush
+ * - Outline ink negro grueso estilo ilustración
+ * - Highlight blanco sobre el top para dar volumen
+ * - Chevron ^ ancho sobre el top
+ * - Al click: la parte superior se hunde hacia la base (translate + scale)
+ * - Vibración háptica + scroll-to-top
  */
 export default function KeycapButton() {
   const [visible, setVisible] = useState(false);
@@ -49,42 +35,92 @@ export default function KeycapButton() {
     <button
       onClick={handleClick}
       aria-label="Volver arriba"
-      className={`fixed bottom-8 right-6 z-40 transition-all duration-500 ${
+      className={`fixed bottom-6 right-6 z-40 transition-all duration-500 ${
         visible
           ? "opacity-100 translate-y-0 scale-100"
           : "opacity-0 translate-y-6 scale-90 pointer-events-none"
       }`}
     >
       <div
-        className={`
-          relative w-14 h-14 md:w-16 md:h-16 rounded-2xl
-          border border-champagne
-          bg-gradient-to-b from-cream via-[#fbead6] to-[#f2dccc]
-          flex items-center justify-center
-          transition-all duration-150 ease-out
-          ${pressed ? "translate-y-[9px]" : "hover:-translate-y-1"}
-        `}
-        style={{ boxShadow: pressed ? KEY_SHADOW_DOWN : KEY_SHADOW_UP }}
+        className={`relative transition-transform duration-150 ease-out ${
+          pressed ? "translate-y-1 scale-[0.97]" : "hover:-translate-y-1"
+        }`}
+        style={{
+          filter: pressed
+            ? "drop-shadow(0 4px 6px rgba(58,47,42,0.25))"
+            : "drop-shadow(0 10px 14px rgba(58,47,42,0.35))",
+        }}
       >
-        {/* Highlight arriba — simula la curva superior de la tecla */}
-        <span className="absolute inset-x-3 top-1.5 h-1.5 rounded-full bg-white/55 blur-[2px] pointer-events-none" />
-
-        {/* Sombra interna sutil abajo — profundidad */}
-        <span className="absolute inset-x-2 bottom-1 h-2 rounded-full bg-black/[0.04] blur-sm pointer-events-none" />
-
-        {/* Chevron ^ ancho — dibujado en SVG con ángulo abierto (~130°) */}
         <svg
-          viewBox="0 0 40 22"
-          width="28"
-          height="16"
-          fill="none"
-          stroke="#3a2f2a"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden
+          viewBox="0 0 140 120"
+          width="82"
+          height="70"
+          className="md:w-[92px] md:h-[78px]"
         >
-          <path d="M 5 18 L 20 6 L 35 18" />
+          {/* CARA IZQUIERDA (más oscura, bisque) */}
+          <path
+            d="M 22 46
+               L 22 92
+               Q 24 100, 34 100
+               L 34 58
+               Z"
+            fill="#c9a790"
+            stroke="#3a2f2a"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+
+          {/* CARA FRONTAL (mid blush) */}
+          <path
+            d="M 34 58
+               L 34 100
+               L 118 100
+               Q 128 98, 128 90
+               L 128 66
+               Q 82 76, 34 58
+               Z"
+            fill="#e5bca9"
+            stroke="#3a2f2a"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+
+          {/* CARA SUPERIOR (top cream con leve domo) */}
+          <path
+            d="M 34 58
+               Q 26 30, 44 22
+               Q 82 12, 118 22
+               Q 134 30, 128 66
+               Q 82 76, 34 58
+               Z"
+            fill="#FFFDFA"
+            stroke="#3a2f2a"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+
+          {/* Highlight arriba (brillo del domo) */}
+          <path
+            d="M 50 32 Q 82 24, 110 32"
+            stroke="white"
+            strokeWidth="4"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.7"
+          />
+
+          {/* Chevron ^ ancho sobre el top */}
+          <path
+            d="M 55 54 L 80 40 L 105 54"
+            stroke="#3a2f2a"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
         </svg>
       </div>
     </button>
