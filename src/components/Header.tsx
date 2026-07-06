@@ -28,13 +28,13 @@ export default function Header() {
         </Link>
 
         {/* Nav central con separadores ornamentales */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-baseline gap-8">
           <NavLink href="/">Inicio</NavLink>
-          <span aria-hidden className="text-rose/50 text-xs leading-none flex items-center" style={{ transform: "translateY(-1px)" }}>✿</span>
+          <span aria-hidden className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo">Catálogo</NavLink>
-          <span aria-hidden className="text-rose/50 text-xs leading-none flex items-center" style={{ transform: "translateY(-1px)" }}>✿</span>
+          <span aria-hidden className="text-rose/50 text-xs">✿</span>
           <NavLink href="/quienes-somos">Nosotros</NavLink>
-          <span aria-hidden className="text-rose/50 text-xs leading-none flex items-center" style={{ transform: "translateY(-1px)" }}>✿</span>
+          <span aria-hidden className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo?sale=1" className="text-rose">Rebajas</NavLink>
         </nav>
 

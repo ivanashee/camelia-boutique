@@ -126,9 +126,12 @@ export default async function HomePage() {
         <StaggerGroup className="grid grid-cols-2 md:grid-cols-4 gap-4" stagger={0.09}>
           {categories.map((c, i) => {
             const bg = ["#F0C4CB", "#FBEAD6", "#E5BCA9", "#6B7556", "#C87D87"][i % 5];
-            const isDark = i >= 3;
+            // Decisión por slug (no por índice) porque las fotos oscurecen
+            // ciertas cards independientemente del color de fondo base.
+            const needsWhite = ["bufandas", "sueteres", "remeras"].includes(c.slug);
+            const isDark = needsWhite || i >= 3;
             const img = CATEGORY_IMG[c.slug];
-            const textColor = isDark ? "#FFFFFF" : "#3a2f2a";
+            const textColor = needsWhite ? "#FFFFFF" : (i >= 3 ? "#FFFFFF" : "#3a2f2a");
             return (
               <StaggerItem key={c.id}>
                 <Link
