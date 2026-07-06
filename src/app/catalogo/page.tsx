@@ -59,22 +59,46 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
             )}
           </h1>
         </div>
-        <form className="flex items-center gap-2" action="/catalogo">
+        <form
+          action="/catalogo"
+          className="group flex items-center gap-2 bg-cream border border-champagne rounded-full pl-5 pr-1.5 py-1 shadow-sm w-full md:w-auto md:min-w-[520px] focus-within:border-rose transition-colors"
+        >
+          <svg className="text-thyme shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3-3" />
+          </svg>
           <input
             name="q"
             defaultValue={searchParams.q || ""}
-            placeholder="Buscar..."
-            className="input md:w-64"
+            placeholder="Buscá tu próxima favorita..."
+            className="flex-1 bg-transparent border-0 outline-none text-sm py-2 min-w-0 placeholder:text-thyme/60 placeholder:italic placeholder:font-serif"
           />
-          <select name="sort" defaultValue={searchParams.sort || "new"} className="input md:w-44">
-            <option value="new">Más recientes</option>
-            <option value="price-asc">Precio: menor a mayor</option>
-            <option value="price-desc">Precio: mayor a menor</option>
-            <option value="name">Nombre A-Z</option>
-          </select>
+          <span className="h-6 w-px bg-champagne hidden md:block" aria-hidden />
+          <div className="relative hidden md:flex items-center">
+            <span className="text-[10px] uppercase tracking-widest text-thyme/70 pointer-events-none">Ordenar:</span>
+            <select
+              name="sort"
+              defaultValue={searchParams.sort || "new"}
+              className="appearance-none bg-transparent border-0 outline-none pr-6 pl-2 text-[11px] uppercase tracking-widest text-ink cursor-pointer hover:text-rose transition-colors"
+            >
+              <option value="new">Más recientes</option>
+              <option value="price-asc">Precio: menor</option>
+              <option value="price-desc">Precio: mayor</option>
+              <option value="name">Nombre A-Z</option>
+            </select>
+            <svg className="pointer-events-none absolute right-1 text-thyme" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
           {searchParams.cat && <input type="hidden" name="cat" value={searchParams.cat} />}
           {searchParams.sale && <input type="hidden" name="sale" value={searchParams.sale} />}
-          <button className="btn-outline !py-2 !px-4">Buscar</button>
+          <button
+            className="rounded-full bg-thyme text-champagne text-[10px] uppercase tracking-[0.2em] px-5 py-2.5 hover:bg-ink transition-colors shrink-0 flex items-center gap-1.5"
+            aria-label="Buscar"
+          >
+            <span className="text-rose">✿</span>
+            Buscar
+          </button>
         </form>
       </div>
 

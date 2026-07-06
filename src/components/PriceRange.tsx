@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { formatGs } from "@/lib/format";
 
-const MIN = 100_000;
-const MAX = 2_000_000;
-const STEP = 10_000;
+const MIN = 0;
+const MAX = 500_000;
+const STEP = 5_000;
 
 export default function PriceRange({
   initialMin,
