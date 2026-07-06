@@ -13,7 +13,7 @@ const CATEGORY_IMG: Record<string, string> = {
   sacos: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=80",
   sueteres: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=80",
   remeras: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
-  bufandas: "https://images.unsplash.com/photo-1601924582971-df85fd06681d?auto=format&fit=crop&w=900&q=80",
+  bufandas: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=900&q=80",
   accesorios: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=80",
 };
 
