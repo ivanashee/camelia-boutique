@@ -10,6 +10,8 @@ type Snapshot = {
   id: string;
   items: CartItem[];
   total: number;
+  discount?: number;
+  couponCode?: string;
   name: string;
   phone: string;
   address: string;
@@ -74,13 +76,21 @@ export default function ConfirmadoPage({ params }: { params: { id: string } }) {
                 </div>
               ))}
             </div>
-            <div className="border-t border-bisque mt-3 pt-3 flex justify-between font-serif text-lg">
+            {snap.discount && snap.discount > 0 && (
+              <div className="border-t border-bisque mt-3 pt-3 space-y-1 text-sm">
+                <div className="flex justify-between text-thyme">
+                  <span>Cupón {snap.couponCode}</span>
+                  <span>-{formatGs(snap.discount)}</span>
+                </div>
+              </div>
+            )}
+            <div className={`${snap.discount ? "border-t-0 mt-2" : "border-t border-bisque mt-3 pt-3"} flex justify-between font-serif text-lg`}>
               <span>Total</span><span className="text-rose">{formatGs(order.total)}</span>
             </div>
           </div>
 
           <a
-            href={waOrderLink(order, snap.items)}
+            href={waOrderLink(order, snap.items, { discount: snap.discount, couponCode: snap.couponCode })}
             target="_blank"
             rel="noreferrer"
             className="btn-wa w-full mt-6"

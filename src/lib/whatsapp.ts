@@ -23,12 +23,20 @@ export function waProductLink(name: string, price: number) {
   return `https://wa.me/${number()}?text=${text}`;
 }
 
-export function waOrderLink(order: Order, items: OrderItem[] | CartItem[]) {
+export function waOrderLink(
+  order: Order,
+  items: OrderItem[] | CartItem[],
+  extras?: { discount?: number; couponCode?: string }
+) {
+  const hasDiscount = extras?.discount && extras.discount > 0;
+  const subtotal = items.reduce((a, i: any) => a + i.price * i.qty, 0);
   const lines = [
     `Hola Camélia! Confirmo mi pedido #${order.id.slice(0, 8)}:`,
     "",
     ...items.map((i: any) => `• ${i.qty} × ${i.name} — ${formatGs(i.price * i.qty)}`),
     "",
+    hasDiscount ? `Subtotal: ${formatGs(subtotal)}` : "",
+    hasDiscount ? `Cupón ${extras!.couponCode}: -${formatGs(extras!.discount!)}` : "",
     `Total: ${formatGs(order.total)}`,
     `Nombre: ${order.customer_name}`,
     `Teléfono: ${order.phone}`,

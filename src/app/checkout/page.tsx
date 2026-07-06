@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Ornament from "@/components/Ornament";
 import { useCart } from "@/lib/cart-store";
 import { formatGs } from "@/lib/format";
+import { validateCoupon, applyCoupon, type Coupon } from "@/lib/coupons";
 import { createOrder } from "./actions";
 
 export default function CheckoutPage() {
@@ -13,9 +14,33 @@ export default function CheckoutPage() {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [couponInput, setCouponInput] = useState("");
+  const [coupon, setCoupon] = useState<Coupon | null>(null);
+  const [couponMsg, setCouponMsg] = useState<string | null>(null);
+
   useEffect(() => setMounted(true), []);
   const subtotal = items.reduce((a, i) => a + i.price * i.qty, 0);
+  const { discount, total } = applyCoupon(subtotal, coupon);
+
   if (!mounted) return null;
+
+  function handleApplyCoupon() {
+    const c = validateCoupon(couponInput);
+    if (!c) {
+      setCoupon(null);
+      setCouponMsg("Ese cupón no es válido.");
+      setTimeout(() => setCouponMsg(null), 2500);
+      return;
+    }
+    setCoupon(c);
+    setCouponMsg(`✓ ${c.label}`);
+  }
+
+  function handleRemoveCoupon() {
+    setCoupon(null);
+    setCouponInput("");
+    setCouponMsg(null);
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,19 +58,21 @@ export default function CheckoutPage() {
       payment: String(fd.get("payment") || "transferencia"),
       notes: String(fd.get("notes") || ""),
       items,
+      couponCode: coupon?.code,
     });
     setLoading(false);
     if (!res.ok) {
       setError(res.error);
       return;
     }
-    // Persistimos snapshot para la pantalla de confirmación.
     sessionStorage.setItem(
       "camelia-last-order",
       JSON.stringify({
         id: res.orderId,
         items,
-        total: subtotal,
+        total: res.total,
+        discount: res.discount,
+        couponCode: coupon?.code,
         name: String(fd.get("name") || ""),
         phone: String(fd.get("phone") || ""),
         address: String(fd.get("address") || ""),
@@ -106,7 +133,7 @@ export default function CheckoutPage() {
 
         <aside className="bg-champagne/70 rounded-2xl p-6 h-fit">
           <div className="eyebrow mb-3">Resumen</div>
-          <div className="space-y-2 text-sm max-h-64 overflow-auto pr-1">
+          <div className="space-y-2 text-sm max-h-56 overflow-auto pr-1">
             {items.map((i) => (
               <div key={i.productId} className="flex justify-between">
                 <span>{i.qty} × {i.name}</span>
@@ -115,8 +142,72 @@ export default function CheckoutPage() {
             ))}
             {items.length === 0 && <div className="text-thyme text-xs">Tu carrito está vacío.</div>}
           </div>
-          <div className="border-t border-bisque mt-3 pt-3 flex justify-between font-serif text-xl">
-            <span>Total</span><span className="text-rose">{formatGs(subtotal)}</span>
+
+          {/* Cupón */}
+          <div className="mt-5 pt-4 border-t border-bisque">
+            <div className="eyebrow mb-2">Cupón</div>
+            {coupon ? (
+              <div className="flex items-center justify-between gap-2 bg-cream border border-thyme/50 rounded-lg px-3 py-2">
+                <div className="text-sm">
+                  <div className="text-thyme font-medium">{coupon.code}</div>
+                  <div className="text-[11px] text-muted">-{coupon.percent}% aplicado</div>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleRemoveCoupon}
+                  className="text-xs text-rose hover:underline"
+                >
+                  Quitar
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="flex gap-2">
+                  <input
+                    value={couponInput}
+                    onChange={(e) => setCouponInput(e.target.value)}
+                    placeholder="CAMELIA10"
+                    className="input flex-1 uppercase tracking-widest text-xs"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleApplyCoupon();
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleApplyCoupon}
+                    className="btn-outline !py-2 !px-3 !text-[11px]"
+                  >
+                    Aplicar
+                  </button>
+                </div>
+                {couponMsg && (
+                  <div className={`text-[11px] mt-1.5 ${couponMsg.startsWith("✓") ? "text-thyme" : "text-rose"}`}>
+                    {couponMsg}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Totales */}
+          <div className="mt-4 space-y-1 text-sm border-t border-bisque pt-3">
+            <div className="flex justify-between text-muted">
+              <span>Subtotal</span>
+              <span>{formatGs(subtotal)}</span>
+            </div>
+            {discount > 0 && (
+              <div className="flex justify-between text-thyme">
+                <span>Descuento ({coupon?.code})</span>
+                <span>-{formatGs(discount)}</span>
+              </div>
+            )}
+            <div className="flex justify-between font-serif text-xl pt-2">
+              <span>Total</span>
+              <span className="text-rose">{formatGs(total)}</span>
+            </div>
           </div>
         </aside>
       </div>

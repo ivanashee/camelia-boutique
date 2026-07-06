@@ -1,5 +1,6 @@
 "use server";
 import { serverClient } from "@/lib/supabase";
+import { applyCoupon, validateCoupon } from "@/lib/coupons";
 import type { CartItem } from "@/lib/types";
 
 export type CheckoutInput = {
@@ -12,21 +13,22 @@ export type CheckoutInput = {
   payment: string;
   notes?: string;
   items: CartItem[];
+  couponCode?: string;
 };
 
 export type CheckoutResult =
-  | { ok: true; orderId: string; demo: boolean }
+  | { ok: true; orderId: string; demo: boolean; total: number; discount: number }
   | { ok: false; error: string };
 
 export async function createOrder(input: CheckoutInput): Promise<CheckoutResult> {
   const subtotal = input.items.reduce((a, i) => a + i.price * i.qty, 0);
-  const total = subtotal;
+  const coupon = input.couponCode ? validateCoupon(input.couponCode) : null;
+  const { discount, total } = applyCoupon(subtotal, coupon);
 
   const sb = serverClient();
   if (!sb) {
-    // Modo demo: sin Supabase configurado, generamos un id local.
     const orderId = "demo-" + Math.random().toString(36).slice(2, 10);
-    return { ok: true, orderId, demo: true };
+    return { ok: true, orderId, demo: true, total, discount };
   }
 
   const { data: customer, error: cErr } = await sb
@@ -42,6 +44,13 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
     .single();
   if (cErr) return { ok: false, error: cErr.message };
 
+  // Guardamos el cupón en las notas (para no requerir migración de schema).
+  // Si más adelante querés columnas dedicadas, agregarlas con ALTER TABLE.
+  const notesWithCoupon =
+    coupon && discount > 0
+      ? `${input.notes ? input.notes + " · " : ""}Cupón ${coupon.code} (-${coupon.percent}%, -${discount})`
+      : input.notes || null;
+
   const { data: order, error: oErr } = await sb
     .from("orders")
     .insert({
@@ -53,7 +62,7 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
       city: input.city || null,
       delivery: input.delivery,
       payment: input.payment,
-      notes: input.notes || null,
+      notes: notesWithCoupon,
       subtotal,
       total,
       status: "pendiente",
@@ -73,5 +82,5 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
   const { error: iErr } = await sb.from("order_items").insert(rows);
   if (iErr) return { ok: false, error: iErr.message };
 
-  return { ok: true, orderId: order!.id, demo: false };
+  return { ok: true, orderId: order!.id, demo: false, total, discount };
 }
