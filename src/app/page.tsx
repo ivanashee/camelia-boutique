@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Ornament from "@/components/Ornament";
 import ProductCard from "@/components/ProductCard";
+import { RandomLetterSwapPingPong } from "@/components/RandomLetterSwap";
 import { getCategories, getProducts } from "@/lib/data";
 
 export default async function HomePage() {
@@ -36,6 +37,23 @@ export default async function HomePage() {
               <Link href="/catalogo?featured=1" className="btn-outline">Lo más nuevo</Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Wordmark animado — hover para intercambiar letras */}
+      <section className="relative border-y border-champagne bg-cream overflow-hidden">
+        <div className="absolute -top-4 -left-4 opacity-40 pointer-events-none hidden md:block">
+          <Ornament size={140} variant="bud" opacity={0.5} />
+        </div>
+        <div className="absolute -bottom-6 -right-6 opacity-40 pointer-events-none hidden md:block rotate-180">
+          <Ornament size={140} variant="bud" opacity={0.5} />
+        </div>
+        <div className="max-w-6xl mx-auto px-5 md:px-8 py-10 md:py-14 flex justify-center">
+          <RandomLetterSwapPingPong
+            label="C A M É L I A"
+            className="font-serif text-5xl md:text-8xl text-ink tracking-widest cursor-default select-none"
+            staggerDuration={0.03}
+          />
         </div>
       </section>
 
