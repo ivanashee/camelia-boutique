@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CartBadge from "./CartBadge";
 import FavoritesBadge from "./FavoritesBadge";
+import MobileMenu from "./MobileMenu";
 import NavLink from "./NavLink";
 import Ornament from "./Ornament";
 
@@ -36,11 +37,11 @@ export default function Header() {
         </nav>
 
         {/* Íconos derecha */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4 md:gap-5">
           <Link
             href="/catalogo"
             aria-label="Buscar"
-            className="text-ink hover:text-rose transition-colors"
+            className="hidden md:inline-flex text-ink hover:text-rose transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="11" cy="11" r="7" />
@@ -51,7 +52,7 @@ export default function Header() {
           <Link
             href="/admin"
             aria-label="Admin"
-            className="text-ink hover:text-rose transition-colors"
+            className="hidden md:inline-flex text-ink hover:text-rose transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -59,6 +60,7 @@ export default function Header() {
             </svg>
           </Link>
           <CartBadge />
+          <MobileMenu />
         </div>
       </div>
     </header>
