@@ -1,25 +1,9 @@
-import { createClient } from "@supabase/supabase-js";
+// Legacy shim — reexporta desde supabase-server para código viejo.
+// Nuevos módulos deberían importar de "@/lib/supabase-server".
+export { adminClient as serverClient } from "./supabase-server";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const service = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const schema = process.env.NEXT_PUBLIC_SUPABASE_SCHEMA || "boutique";
+export const supabaseConfigured = Boolean(
+  process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
-export const supabaseConfigured = Boolean(url && anon);
-
-export function browserClient() {
-  if (!supabaseConfigured) return null;
-  return createClient(url!, anon!, { db: { schema } });
-}
-
-export function serverClient() {
-  if (!url) return null;
-  const key = service || anon;
-  if (!key) return null;
-  return createClient(url, key, {
-    db: { schema },
-    auth: { persistSession: false },
-  });
-}
-
-export const SCHEMA = schema;
+export const SCHEMA = process.env.NEXT_PUBLIC_SUPABASE_SCHEMA || "boutique";

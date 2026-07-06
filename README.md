@@ -69,9 +69,20 @@ Estado del pedido: `pendiente · confirmado · preparando · enviado · entregad
 | `/admin/categorias`           | Lista + nueva categoría                           |
 | `/admin/pedidos`              | Lista con cambio de estado                        |
 
-## Admin
+## Admin (Supabase Auth)
 
-Login por email y password guardados en `.env.local` (`ADMIN_EMAIL`, `ADMIN_PASSWORD`). El session cookie dura 8 horas. Para prod migrar a Supabase Auth (una línea de cambio en `src/lib/admin-auth.ts`).
+El panel usa **Supabase Auth** con email + password. Para dar de alta un admin:
+
+1. Corré `supabase/admins.sql` en el SQL Editor (crea la tabla `boutique.admins`).
+2. Supabase Dashboard → **Authentication → Users → Add user** → email + password (marcá "Auto Confirm User").
+3. En SQL Editor:
+   ```sql
+   insert into boutique.admins (user_id, email)
+   select id, email from auth.users where email = 'admin@tu-email.com'
+   on conflict do nothing;
+   ```
+
+Cualquier usuario con sesión activa Y una fila en `boutique.admins` puede entrar a `/admin`. El middleware refresca el JWT en cada request.
 
 ## WhatsApp
 

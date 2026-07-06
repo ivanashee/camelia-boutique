@@ -28,6 +28,7 @@ join (values
   ('accesorios','Cinturón Thyme',      'cinturon-thyme',      'Cinturón de cuero verde thyme.',                             80000, 14, array['/img/p-10.jpg'], false),
   ('remeras',   'Top Art Nouveau',     'top-art-nouveau',     'Top con estampa Art Nouveau exclusiva.',                    150000, 7,  array['/img/p-11.jpg'], true),
   ('sacos',     'Trench Champagne',    'trench-champagne',    'Trench liviano en color champagne, ideal media estación.',  550000, 4,  array['/img/p-12.jpg'], false)
+
 ) as x(cat_slug, name, slug, description, price, stock, images, featured)
   on c.slug = x.cat_slug
 on conflict (slug) do nothing;

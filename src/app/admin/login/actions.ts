@@ -1,18 +1,27 @@
 "use server";
 import { redirect } from "next/navigation";
-import { adminEmail, adminPassword, loginAdmin, logoutAdmin } from "@/lib/admin-auth";
+import { ssrClient } from "@/lib/supabase-server";
+import { isAdmin } from "@/lib/admin-auth";
 
 export async function loginAction(formData: FormData): Promise<void> {
   const email = String(formData.get("email") || "").trim();
-  const pass = String(formData.get("password") || "");
-  if (email !== adminEmail() || pass !== adminPassword()) {
-    redirect("/admin/login?error=1");
+  const password = String(formData.get("password") || "");
+
+  const sb = ssrClient();
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if (error) redirect(`/admin/login?error=${encodeURIComponent(error.message)}`);
+
+  // Chequear que el usuario esté en la tabla admins
+  const ok = await isAdmin();
+  if (!ok) {
+    await sb.auth.signOut();
+    redirect("/admin/login?error=No%20autorizado");
   }
-  loginAdmin();
   redirect("/admin");
 }
 
 export async function logoutAction(): Promise<void> {
-  logoutAdmin();
+  const sb = ssrClient();
+  await sb.auth.signOut();
   redirect("/admin/login");
 }

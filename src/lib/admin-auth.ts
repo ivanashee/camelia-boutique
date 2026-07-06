@@ -1,27 +1,18 @@
-import { cookies } from "next/headers";
+import { ssrClient } from "./supabase-server";
 
-const COOKIE = "camelia_admin";
-const VALUE = "ok";
-
-export function adminEmail() {
-  return process.env.ADMIN_EMAIL || "admin@camelia.py";
-}
-export function adminPassword() {
-  return process.env.ADMIN_PASSWORD || "camelia2026";
-}
-
-export function isAdmin(): boolean {
-  return cookies().get(COOKIE)?.value === VALUE;
+// Un usuario es admin si:
+//  1. Tiene sesión activa en Supabase Auth
+//  2. Su user_id existe en la tabla boutique.admins
+export async function isAdmin(): Promise<boolean> {
+  const sb = ssrClient();
+  const { data: { user } } = await sb.auth.getUser();
+  if (!user) return false;
+  const { data } = await sb.from("admins").select("user_id").eq("user_id", user.id).maybeSingle();
+  return Boolean(data);
 }
 
-export function loginAdmin() {
-  cookies().set(COOKIE, VALUE, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 8, // 8h
-  });
-}
-export function logoutAdmin() {
-  cookies().delete(COOKIE);
+export async function getSessionUser() {
+  const sb = ssrClient();
+  const { data: { user } } = await sb.auth.getUser();
+  return user;
 }

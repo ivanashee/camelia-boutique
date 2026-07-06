@@ -1,11 +1,11 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { serverClient } from "@/lib/supabase";
+import { adminClient } from "@/lib/supabase-server";
 import { isAdmin } from "@/lib/admin-auth";
 
-export async function createCategory(fd: FormData) {
-  if (!isAdmin()) return;
-  const sb = serverClient();
+export async function createCategory(fd: FormData): Promise<void> {
+  if (!(await isAdmin())) return;
+  const sb = adminClient();
   if (!sb) return;
   await sb.from("categories").insert({
     name: String(fd.get("name") || ""),
@@ -16,9 +16,9 @@ export async function createCategory(fd: FormData) {
   revalidatePath("/admin/categorias");
 }
 
-export async function toggleCategory(id: string, active: boolean) {
-  if (!isAdmin()) return;
-  const sb = serverClient();
+export async function toggleCategory(id: string, active: boolean): Promise<void> {
+  if (!(await isAdmin())) return;
+  const sb = adminClient();
   if (!sb) return;
   await sb.from("categories").update({ active }).eq("id", id);
   revalidatePath("/admin/categorias");
