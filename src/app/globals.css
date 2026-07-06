@@ -29,3 +29,23 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   @apply w-full rounded-lg border border-bisque bg-cream px-3 py-2.5 text-sm outline-none focus:border-thyme;
 }
 .label { @apply block text-[11px] uppercase tracking-widest text-thyme mb-1.5; }
+
+/* Tablas de admin — buena legibilidad */
+.admin-table { @apply w-full text-sm text-ink; }
+.admin-table thead th {
+  @apply text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-widest text-thyme bg-champagne/70 border-b border-champagne;
+}
+.admin-table tbody tr {
+  @apply border-b border-champagne/60 transition-colors;
+}
+.admin-table tbody tr:nth-child(even) { @apply bg-champagne/10; }
+.admin-table tbody tr:hover { @apply bg-champagne/40; }
+.admin-table td { @apply px-4 py-3 text-ink; }
+.admin-table td.muted { @apply text-thyme text-xs; }
+.admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
+
+.badge { @apply inline-block text-[10px] uppercase tracking-widest rounded-full px-2.5 py-1 font-medium; }
+.badge-active   { @apply bg-thyme/15 text-thyme; }
+.badge-inactive { @apply bg-ink/10 text-ink/80; }
+.badge-featured { @apply bg-rose/15 text-rose; }
+.badge-critical { @apply bg-rose/15 text-rose; }

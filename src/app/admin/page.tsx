@@ -39,27 +39,25 @@ export default async function AdminDashboard() {
       {recent.length === 0 ? (
         <div className="text-sm text-thyme">Todavía no hay pedidos.</div>
       ) : (
-        <div className="bg-cream border border-champagne rounded-xl overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-champagne/60 text-thyme">
+        <div className="card-wrap">
+          <table className="admin-table">
+            <thead>
               <tr>
-                <th className="text-left px-4 py-2">#</th>
-                <th className="text-left px-4 py-2">Cliente</th>
-                <th className="text-left px-4 py-2">Total</th>
-                <th className="text-left px-4 py-2">Estado</th>
-                <th className="text-left px-4 py-2">Fecha</th>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Fecha</th>
               </tr>
             </thead>
             <tbody>
               {recent.map((o) => (
-                <tr key={o.id} className="border-t border-champagne">
-                  <td className="px-4 py-2 font-mono text-xs">{o.id.slice(0, 8)}</td>
-                  <td className="px-4 py-2">{o.customer_name}</td>
-                  <td className="px-4 py-2 text-rose">{formatGs(o.total)}</td>
-                  <td className="px-4 py-2">{o.status}</td>
-                  <td className="px-4 py-2 text-xs text-thyme">
-                    {new Date(o.created_at).toLocaleString("es-PY")}
-                  </td>
+                <tr key={o.id}>
+                  <td className="font-mono text-xs">{o.id.slice(0, 8)}</td>
+                  <td className="font-medium">{o.customer_name}</td>
+                  <td className="text-rose font-semibold">{formatGs(o.total)}</td>
+                  <td><span className="badge badge-active capitalize">{o.status}</span></td>
+                  <td className="muted">{new Date(o.created_at).toLocaleString("es-PY")}</td>
                 </tr>
               ))}
             </tbody>
