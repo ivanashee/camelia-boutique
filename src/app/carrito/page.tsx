@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Ornament from "@/components/Ornament";
 import { useCart } from "@/lib/cart-store";
 import { formatGs } from "@/lib/format";
-import { waCartLink } from "@/lib/whatsapp";
 
 export default function CarritoPage() {
   const [mounted, setMounted] = useState(false);
@@ -68,12 +67,6 @@ export default function CarritoPage() {
               <span>Total</span><span className="text-rose">{formatGs(subtotal)}</span>
             </div>
             <Link href="/checkout" className="btn-primary w-full mt-4">Continuar al checkout</Link>
-            <a
-              href={waCartLink(items, subtotal)}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-wa w-full mt-3"
-            >Consultar por WhatsApp</a>
           </aside>
         </div>
       )}

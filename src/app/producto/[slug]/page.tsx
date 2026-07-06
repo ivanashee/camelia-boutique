@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToCart from "@/components/AddToCart";
@@ -6,14 +7,25 @@ import Ornament from "@/components/Ornament";
 import ProductCard from "@/components/ProductCard";
 import { getProductBySlug, getRelated } from "@/lib/data";
 import { formatGs } from "@/lib/format";
-import { waProductLink } from "@/lib/whatsapp";
+
+const FALLBACK_BG: Record<string, string> = {
+  sacos: "#F0C4CB",
+  sueteres: "#6B7556",
+  remeras: "#FBEAD6",
+  bufandas: "#C87D87",
+  accesorios: "#E5BCA9",
+};
 
 export default async function ProductoPage({ params }: { params: { slug: string } }) {
   const p = await getProductBySlug(params.slug);
   if (!p) notFound();
   const related = await getRelated(p);
-  const bg = p.images?.[0]?.startsWith("#") ? p.images[0] : "#F0C4CB";
-  const wa = waProductLink(p.name, p.price);
+
+  const firstImg = p.images?.[0] ?? "";
+  const isUrl = firstImg.startsWith("http");
+  const isColor = firstImg.startsWith("#");
+  const fallbackBg = FALLBACK_BG[p.category?.slug ?? ""] ?? "#F0C4CB";
+  const bg = isColor ? firstImg : fallbackBg;
 
   return (
     <section className="max-w-6xl mx-auto px-5 md:px-8 py-10">
@@ -24,18 +36,53 @@ export default async function ProductoPage({ params }: { params: { slug: string 
 
       <div className="grid md:grid-cols-2 gap-10">
         <div>
-          <div className="aspect-[4/5] rounded-2xl relative overflow-hidden flex items-center justify-center" style={{ background: bg }}>
-            <div className="absolute top-4 left-4 opacity-25"><Ornament size={70} opacity={0.5} /></div>
-            <Ornament size={260} opacity={0.75} />
+          <div
+            className="aspect-[4/5] rounded-2xl relative overflow-hidden flex items-center justify-center"
+            style={{ background: bg }}
+          >
+            {isUrl ? (
+              <Image
+                src={firstImg}
+                alt={p.name}
+                fill
+                sizes="(max-width:768px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <>
+                <div className="absolute top-4 left-4 opacity-25">
+                  <Ornament size={70} opacity={0.5} />
+                </div>
+                <Ornament size={260} opacity={0.75} />
+              </>
+            )}
             {p.stock === 0 && (
-              <div className="absolute bottom-4 right-4 text-xs uppercase tracking-widest bg-ink/80 text-champagne rounded px-3 py-1.5">
+              <div className="absolute bottom-4 right-4 text-xs uppercase tracking-widest bg-ink/80 text-champagne rounded px-3 py-1.5 z-10">
                 Sin stock
               </div>
             )}
           </div>
+
+          {/* Galería mini — variaciones sutiles del color base */}
           <div className="grid grid-cols-4 gap-2 mt-3">
             {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="aspect-square rounded-lg" style={{ background: bg, opacity: 1 - i * 0.15 }} />
+              <div
+                key={i}
+                className="aspect-square rounded-lg overflow-hidden relative"
+                style={{ background: bg }}
+              >
+                {isUrl && (
+                  <Image
+                    src={firstImg}
+                    alt=""
+                    fill
+                    sizes="120px"
+                    className="object-cover"
+                    style={{ filter: `brightness(${100 - i * 8}%) saturate(${100 - i * 10}%)` }}
+                  />
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -48,6 +95,7 @@ export default async function ProductoPage({ params }: { params: { slug: string 
             </div>
             <FavoriteButton productId={p.id} size={22} className="!p-3" />
           </div>
+
           <div className="mt-3 flex items-baseline gap-3">
             {p.discount && p.discount > 0 ? (
               <>
@@ -61,17 +109,14 @@ export default async function ProductoPage({ params }: { params: { slug: string 
               <span className="text-2xl text-rose font-medium">{formatGs(p.price)}</span>
             )}
           </div>
+
           <p className="text-muted mt-5 leading-relaxed">{p.description}</p>
           <div className="text-xs text-thyme mt-4">
             {p.stock > 0 ? `${p.stock} unidades disponibles` : "Sin stock por ahora"}
           </div>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-8">
             <AddToCart product={p} />
-            <a href={wa} target="_blank" rel="noreferrer" className="btn-wa w-full md:w-auto">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.7 14.3c-.2.6-1.2 1.1-1.7 1.2-.4 0-1 .1-1.6-.1-2.3-.7-3.8-3-3.9-3.1-.1-.1-1-1.3-1-2.5s.6-1.8.9-2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.1.1.3 0 .5 0 .1-.1.3-.3.5s-.4.4-.5.6c-.2.2-.4.4-.2.7.2.4.9 1.4 1.9 2.3 1.3 1.1 2.3 1.4 2.7 1.6.4.1.6.1.8-.1s.9-1 1.1-1.3c.2-.3.4-.3.7-.2s1.8.9 2.1 1c.3.2.5.2.6.3.1.2.1.7-.1 1.3Z"/></svg>
-              Comprar por WhatsApp
-            </a>
           </div>
 
           <div className="mt-8 pt-6 border-t border-champagne grid grid-cols-3 gap-4 text-xs text-thyme">
