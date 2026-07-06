@@ -136,7 +136,7 @@ export default async function HomePage() {
               <StaggerItem key={c.id}>
                 <Link
                   href={`/catalogo?cat=${c.slug}`}
-                  className="group relative block overflow-hidden rounded-2xl p-6 h-40 md:h-48 hover:-translate-y-1 transition-transform duration-500"
+                  className="group relative flex flex-col justify-end overflow-hidden rounded-2xl p-6 h-40 md:h-48 hover:-translate-y-1 transition-transform duration-500"
                   style={{
                     background: bg,
                     color: textColor,
@@ -186,13 +186,7 @@ export default async function HomePage() {
                   </div>
 
                   <div
-                    className="relative font-serif italic text-xs opacity-80 drop-shadow-sm"
-                    style={{ color: textColor }}
-                  >
-                    0{i + 1}
-                  </div>
-                  <div
-                    className="relative font-serif text-xl md:text-2xl mt-20 md:mt-24 drop-shadow-md"
+                    className="relative font-serif text-xl md:text-2xl drop-shadow-md"
                     style={{ color: textColor }}
                   >
                     {c.name}

@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 
 /**
- * Keycap flotante estilo isométrico (inspirado en referencia keycap.avif).
- * - SVG con 3 caras visibles: top cream, lado izquierdo bisque oscuro, frente blush
- * - Outline ink negro grueso estilo ilustración
- * - Highlight blanco sobre el top para dar volumen
- * - Chevron ^ ancho sobre el top
- * - Al click: la parte superior se hunde hacia la base (translate + scale)
- * - Vibración háptica + scroll-to-top
+ * Botón flotante Art Nouveau — medallón floral con chevron.
+ * - Círculo con doble anillo + serifs en las 4 direcciones
+ * - Camelia bud arriba (con tallo curvo)
+ * - Tendril whiplash abajo
+ * - Chevron ^ ancho en el centro
+ * - Hover: scale up sutil + haptic
+ * - Click: pulse rose + scroll-to-top
  */
 export default function KeycapButton() {
   const [visible, setVisible] = useState(false);
@@ -25,9 +25,9 @@ export default function KeycapButton() {
   const handleClick = () => {
     setPressed(true);
     if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-      navigator.vibrate?.(15);
+      navigator.vibrate?.(12);
     }
-    setTimeout(() => setPressed(false), 220);
+    setTimeout(() => setPressed(false), 260);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -35,92 +35,102 @@ export default function KeycapButton() {
     <button
       onClick={handleClick}
       aria-label="Volver arriba"
-      className={`fixed bottom-6 right-6 z-40 transition-all duration-500 ${
+      className={`group fixed bottom-6 right-6 z-40 transition-all duration-500 ${
         visible
           ? "opacity-100 translate-y-0 scale-100"
           : "opacity-0 translate-y-6 scale-90 pointer-events-none"
       }`}
     >
       <div
-        className={`relative transition-transform duration-150 ease-out ${
-          pressed ? "translate-y-1 scale-[0.97]" : "hover:-translate-y-1"
+        className={`relative transition-transform duration-200 ease-out ${
+          pressed ? "scale-90" : "group-hover:scale-105"
         }`}
-        style={{
-          filter: pressed
-            ? "drop-shadow(0 4px 6px rgba(58,47,42,0.25))"
-            : "drop-shadow(0 10px 14px rgba(58,47,42,0.35))",
-        }}
+        style={{ filter: "drop-shadow(0 6px 12px rgba(58,47,42,0.22))" }}
       >
         <svg
-          viewBox="0 0 140 120"
-          width="82"
-          height="70"
-          className="md:w-[92px] md:h-[78px]"
+          width="76"
+          height="96"
+          viewBox="0 0 76 96"
+          className="md:w-[84px] md:h-[104px]"
         >
-          {/* CARA IZQUIERDA (más oscura, bisque) */}
-          <path
-            d="M 22 46
-               L 22 92
-               Q 24 100, 34 100
-               L 34 58
-               Z"
-            fill="#c9a790"
-            stroke="#3a2f2a"
-            strokeWidth="3"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          />
+          {/* ═══ Flourish superior: camelia bud con tallo ═══ */}
+          <g stroke="#C87D87" strokeWidth="0.9" fill="none" strokeLinecap="round">
+            <path d="M 38 6 C 35 10, 34 15, 34 20" />
+            <path d="M 38 6 C 41 10, 42 15, 42 20" />
+          </g>
+          <circle cx="38" cy="4" r="2.2" fill="#C87D87" />
+          <circle cx="34" cy="8" r="1" fill="#C87D87" opacity="0.65" />
+          <circle cx="42" cy="8" r="1" fill="#C87D87" opacity="0.65" />
 
-          {/* CARA FRONTAL (mid blush) */}
-          <path
-            d="M 34 58
-               L 34 100
-               L 118 100
-               Q 128 98, 128 90
-               L 128 66
-               Q 82 76, 34 58
-               Z"
-            fill="#e5bca9"
-            stroke="#3a2f2a"
-            strokeWidth="3"
-            strokeLinejoin="round"
-            strokeLinecap="round"
+          {/* ═══ Círculo principal ═══ */}
+          <circle
+            cx="38"
+            cy="52"
+            r="28"
+            fill="url(#keycap-fill)"
+            stroke="#C87D87"
+            strokeWidth="1.4"
           />
-
-          {/* CARA SUPERIOR (top cream con leve domo) */}
-          <path
-            d="M 34 58
-               Q 26 30, 44 22
-               Q 82 12, 118 22
-               Q 134 30, 128 66
-               Q 82 76, 34 58
-               Z"
-            fill="#FFFDFA"
-            stroke="#3a2f2a"
-            strokeWidth="3"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          />
-
-          {/* Highlight arriba (brillo del domo) */}
-          <path
-            d="M 50 32 Q 82 24, 110 32"
-            stroke="white"
-            strokeWidth="4"
-            strokeLinecap="round"
+          {/* Doble anillo interno */}
+          <circle
+            cx="38"
+            cy="52"
+            r="23"
             fill="none"
-            opacity="0.7"
+            stroke="#C87D87"
+            strokeWidth="0.5"
+            opacity="0.5"
           />
 
-          {/* Chevron ^ ancho sobre el top */}
+          {/* Gradiente para el fondo del medallón */}
+          <defs>
+            <radialGradient id="keycap-fill" cx="35%" cy="30%" r="80%">
+              <stop offset="0%" stopColor="#FFFDFA" />
+              <stop offset="60%" stopColor="#FBEAD6" />
+              <stop offset="100%" stopColor="#F0C4CB" />
+            </radialGradient>
+          </defs>
+
+          {/* ═══ Serifs decorativos en 4 direcciones ═══ */}
+          <g stroke="#C87D87" strokeWidth="0.9" fill="none" strokeLinecap="round" opacity="0.75">
+            {/* Norte */}
+            <path d="M 34 21 Q 38 18, 42 21" />
+            <circle cx="38" cy="19" r="0.9" fill="#C87D87" opacity="0.8" />
+            {/* Sur */}
+            <path d="M 34 83 Q 38 86, 42 83" />
+            <circle cx="38" cy="85" r="0.9" fill="#C87D87" opacity="0.8" />
+            {/* Oeste */}
+            <path d="M 7 48 Q 10 52, 7 56" />
+            <circle cx="8" cy="52" r="0.9" fill="#C87D87" opacity="0.8" />
+            {/* Este */}
+            <path d="M 69 48 Q 66 52, 69 56" />
+            <circle cx="68" cy="52" r="0.9" fill="#C87D87" opacity="0.8" />
+          </g>
+
+          {/* ═══ Curls diagonales interiores tipo whiplash ═══ */}
+          <g stroke="#C87D87" strokeWidth="0.4" fill="none" strokeLinecap="round" opacity="0.5">
+            <path d="M 20 34 Q 28 32, 28 40" />
+            <path d="M 56 34 Q 48 32, 48 40" />
+            <path d="M 20 70 Q 28 72, 28 64" />
+            <path d="M 56 70 Q 48 72, 48 64" />
+          </g>
+
+          {/* ═══ Chevron ^ ancho central ═══ */}
           <path
-            d="M 55 54 L 80 40 L 105 54"
+            d="M 22 58 L 38 44 L 54 58"
             stroke="#3a2f2a"
-            strokeWidth="5"
+            strokeWidth="3.6"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
+
+          {/* ═══ Tendril whiplash inferior ═══ */}
+          <g stroke="#C87D87" strokeWidth="0.7" fill="none" strokeLinecap="round" opacity="0.75">
+            <path d="M 38 90 C 34 92, 30 90, 32 86" />
+            <path d="M 38 90 C 42 92, 46 90, 44 86" />
+          </g>
+          <circle cx="38" cy="92" r="1.2" fill="#C87D87" opacity="0.8" />
         </svg>
       </div>
     </button>
