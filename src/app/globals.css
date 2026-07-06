@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light;
+}
+
+html, body { background: #FFFDFA; color: #3a2f2a; }
+body { font-family: 'Inter', system-ui, sans-serif; }
+
+.font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+.eyebrow { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #6B7556; }
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-thyme text-champagne px-6 py-3 text-sm uppercase tracking-widest hover:opacity-90 transition;
+}
+.btn-outline {
+  @apply inline-flex items-center justify-center rounded-full border border-ink text-ink px-6 py-3 text-sm uppercase tracking-widest hover:bg-ink hover:text-champagne transition;
+}
+.btn-wa {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3 text-sm font-medium hover:opacity-90 transition;
+}
+
+.input {
+  @apply w-full rounded-lg border border-bisque bg-cream px-3 py-2.5 text-sm outline-none focus:border-thyme;
+}
+.label { @apply block text-[11px] uppercase tracking-widest text-thyme mb-1.5; }

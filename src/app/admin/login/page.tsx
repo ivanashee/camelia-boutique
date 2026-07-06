@@ -1,0 +1,27 @@
+import Ornament from "@/components/Ornament";
+import { loginAction } from "./actions";
+
+export default function AdminLoginPage() {
+  return (
+    <section className="min-h-[70vh] flex items-center justify-center px-5">
+      <form
+        action={loginAction}
+        className="relative bg-cream border border-champagne rounded-2xl p-8 w-full max-w-sm overflow-hidden"
+      >
+        <div className="absolute -top-4 -right-4 opacity-30 pointer-events-none">
+          <Ornament size={120} opacity={0.4} />
+        </div>
+        <div className="eyebrow mb-1">— Panel</div>
+        <h1 className="font-serif text-3xl text-ink mb-6">Ingresar</h1>
+        <label className="label">Email</label>
+        <input name="email" type="email" required className="input mb-4" defaultValue="admin@camelia.py" />
+        <label className="label">Contraseña</label>
+        <input name="password" type="password" required className="input mb-6" />
+        <button className="btn-primary w-full">Entrar</button>
+        <p className="text-[11px] text-thyme mt-4">
+          Usá las credenciales de <code>.env.local</code> (<code>ADMIN_EMAIL</code> / <code>ADMIN_PASSWORD</code>).
+        </p>
+      </form>
+    </section>
+  );
+}
