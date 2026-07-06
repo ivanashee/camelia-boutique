@@ -8,6 +8,7 @@ export async function saveProduct(fd: FormData): Promise<void> {
   if (!(await isAdmin())) redirect("/admin/login");
   const sb = adminClient();
   if (!sb) redirect("/admin/productos?error=no-supabase");
+  const imageUrl = String(fd.get("image_url") || "").trim();
   const payload = {
     name: String(fd.get("name") || ""),
     slug: String(fd.get("slug") || ""),
@@ -17,7 +18,7 @@ export async function saveProduct(fd: FormData): Promise<void> {
     category_id: String(fd.get("category_id") || "") || null,
     featured: fd.get("featured") === "on",
     active: fd.get("active") === "on",
-    images: [],
+    images: imageUrl ? [imageUrl] : [],
   };
   const id = String(fd.get("id") || "");
   const { error } = id

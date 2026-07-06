@@ -23,6 +23,11 @@ export default async function NuevoProductoPage() {
           <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="active" defaultChecked /> Activo</label>
         </div>
         <div className="md:col-span-2">
+          <label className="label">URL de la foto</label>
+          <input name="image_url" type="url" className="input" placeholder="https://... (pegá la URL de la foto)" />
+          <p className="text-[11px] text-thyme mt-1">Si dejás vacío, se usa el ornamento de camelia como fallback.</p>
+        </div>
+        <div className="md:col-span-2">
           <label className="label">Descripción</label>
           <textarea name="description" rows={4} className="input" />
         </div>
