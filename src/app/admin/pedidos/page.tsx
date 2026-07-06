@@ -1,4 +1,4 @@
-import { AdminChrome } from "../layout";
+import { AdminChrome } from "../AdminChrome";
 import { adminGetOrders } from "@/lib/admin-data";
 import { formatGs } from "@/lib/format";
 import StatusSelect from "./StatusSelect";

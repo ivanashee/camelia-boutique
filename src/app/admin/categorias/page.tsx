@@ -1,4 +1,4 @@
-import { AdminChrome } from "../layout";
+import { AdminChrome } from "../AdminChrome";
 import { adminGetCategories } from "@/lib/admin-data";
 import { createCategory } from "./actions";
 

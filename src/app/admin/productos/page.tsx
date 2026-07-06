@@ -1,4 +1,4 @@
-import { AdminChrome } from "../layout";
+import { AdminChrome } from "../AdminChrome";
 import { adminGetCategories, adminGetProducts } from "@/lib/admin-data";
 import { formatGs } from "@/lib/format";
 import { supabaseConfigured } from "@/lib/supabase";
