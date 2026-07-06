@@ -1,6 +1,6 @@
 import Link from "next/link";
+import FeaturedStack from "@/components/FeaturedStack";
 import Ornament from "@/components/Ornament";
-import ProductCard from "@/components/ProductCard";
 import { RandomLetterSwapPingPong } from "@/components/RandomLetterSwap";
 import { getCategories, getProducts } from "@/lib/data";
 
@@ -104,9 +104,7 @@ export default async function HomePage() {
             </div>
             <Link href="/catalogo?featured=1" className="text-sm text-thyme border-b border-thyme">Ver todos →</Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {featured.slice(0, 8).map((p) => <ProductCard key={p.id} p={p} />)}
-          </div>
+          <FeaturedStack products={featured.slice(0, 8)} />
         </div>
       </section>
 
