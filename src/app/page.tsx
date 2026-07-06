@@ -85,7 +85,7 @@ export default async function HomePage() {
           <Reveal direction="scale" duration={0.9}>
             <RandomLetterSwapPingPong
               label="C A M É L I A"
-              className="font-serif text-5xl md:text-8xl text-ink tracking-widest cursor-default select-none"
+              className="font-serif text-3xl sm:text-5xl md:text-8xl text-ink tracking-[0.15em] md:tracking-widest cursor-default select-none"
               staggerDuration={0.03}
             />
           </Reveal>

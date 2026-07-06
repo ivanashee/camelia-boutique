@@ -69,7 +69,7 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
         </div>
         <form
           action="/catalogo"
-          className="group flex items-center gap-2 bg-cream border border-champagne rounded-full pl-5 pr-1.5 py-1 shadow-sm w-full md:w-auto md:min-w-[520px] focus-within:border-rose transition-colors"
+          className="group flex items-center gap-2 bg-cream border border-champagne rounded-full pl-4 md:pl-5 pr-1.5 py-1 shadow-sm w-full md:w-auto md:min-w-[520px] focus-within:border-rose transition-colors"
         >
           <svg className="text-thyme shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <circle cx="11" cy="11" r="7" />
@@ -93,7 +93,7 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
           {searchParams.sale && <input type="hidden" name="sale" value={searchParams.sale} />}
           {searchParams.sort && <input type="hidden" name="sort" value={searchParams.sort} />}
           <button
-            className="rounded-full bg-thyme text-champagne text-[10px] uppercase tracking-[0.2em] px-5 py-2.5 hover:bg-ink transition-colors shrink-0 flex items-center gap-1.5"
+            className="rounded-full bg-thyme text-champagne text-[10px] uppercase tracking-[0.2em] px-4 md:px-5 py-2.5 hover:bg-ink transition-colors shrink-0 flex items-center gap-1.5 min-h-[40px]"
             aria-label="Buscar"
           >
             <span className="text-rose">✿</span>

@@ -9,7 +9,7 @@
 }
 
 html, body { background: #FFFDFA; color: #3a2f2a; }
-body { font-family: 'Inter', system-ui, sans-serif; }
+body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 
 .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
 

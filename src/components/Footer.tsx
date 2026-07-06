@@ -68,8 +68,16 @@ export default function Footer() {
             <span className="text-blush">✿</span> Contacto
           </div>
           <ul className="space-y-2.5 text-sm text-champagne/85">
-            <li>hola@camelia.py</li>
-            <li>+595 981 000 000</li>
+            <li>
+              <a href="mailto:boutique@gmail.com" className="hover:text-blush transition-colors">
+                boutique@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/595981772872" target="_blank" rel="noreferrer" className="hover:text-blush transition-colors">
+                +595 981 772 872
+              </a>
+            </li>
             <li>Asunción, Paraguay</li>
           </ul>
         </div>

@@ -57,8 +57,8 @@ export default function ProductCard({ p }: { p: Product }) {
             Sin stock
           </div>
         )}
-        <div className="absolute bottom-3 right-3 z-10">
-          <FavoriteButton productId={p.id} size={16} />
+        <div className="absolute bottom-2 right-2 z-10">
+          <FavoriteButton productId={p.id} size={18} className="!p-2.5" />
         </div>
 
         {/* Fallback ornament sólo si no hay foto */}

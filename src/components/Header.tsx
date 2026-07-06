@@ -37,21 +37,27 @@ export default function Header() {
           <NavLink href="/catalogo?sale=1" className="text-rose">Rebajas</NavLink>
         </nav>
 
-        {/* Íconos derecha */}
-        <div className="flex items-center gap-4 md:gap-5">
+        {/* Íconos derecha — cada uno con min tap target 40x40 en mobile */}
+        <div className="flex items-center gap-1 md:gap-3">
           <Link
             href="/catalogo"
             aria-label="Buscar"
-            className="hidden md:inline-flex text-ink hover:text-rose transition-colors"
+            className="hidden md:inline-flex w-10 h-10 items-center justify-center text-ink hover:text-rose transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="11" cy="11" r="7" />
               <path d="m20 20-3-3" />
             </svg>
           </Link>
-          <FavoritesBadge />
-          <CartBadge />
-          <MobileMenu />
+          <div className="w-10 h-10 flex items-center justify-center">
+            <FavoritesBadge />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center">
+            <CartBadge />
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center md:hidden">
+            <MobileMenu />
+          </div>
         </div>
       </div>
     </header>

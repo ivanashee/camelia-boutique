@@ -1,7 +1,7 @@
 import { formatGs } from "./format";
 import type { CartItem, Order, OrderItem } from "./types";
 
-const number = () => process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "595981000000";
+const number = () => process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "595981772872";
 
 export function waCartLink(items: CartItem[], total: number, customer?: string) {
   const lines = [
