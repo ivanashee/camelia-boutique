@@ -3,8 +3,16 @@ import ProductCard from "@/components/ProductCard";
 import Ornament from "@/components/Ornament";
 import PriceRange from "@/components/PriceRange";
 import { StaggerGroup, StaggerItem } from "@/components/Reveal";
+import SortDropdown from "@/components/SortDropdown";
 import { getCategories, getProducts } from "@/lib/data";
 import { formatGs } from "@/lib/format";
+
+const SORT_OPTIONS = [
+  { value: "new",        label: "Más recientes" },
+  { value: "price-asc",  label: "Precio: menor" },
+  { value: "price-desc", label: "Precio: mayor" },
+  { value: "name",       label: "Nombre A-Z" },
+];
 
 type SP = {
   cat?: string;
@@ -70,28 +78,20 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
           <input
             name="q"
             defaultValue={searchParams.q || ""}
-            placeholder="Buscá tu próxima favorita..."
-            className="flex-1 bg-transparent border-0 outline-none text-sm py-2 min-w-0 placeholder:text-thyme/60 placeholder:italic placeholder:font-serif"
+            placeholder="Buscar"
+            className="flex-1 bg-transparent border-0 outline-none text-sm py-2 min-w-0 placeholder:text-thyme/60"
           />
           <span className="h-6 w-px bg-champagne hidden md:block" aria-hidden />
-          <div className="relative hidden md:flex items-center">
-            <span className="text-[10px] uppercase tracking-widest text-thyme/70 pointer-events-none">Ordenar:</span>
-            <select
+          <div className="hidden md:block px-2">
+            <SortDropdown
               name="sort"
               defaultValue={searchParams.sort || "new"}
-              className="appearance-none bg-transparent border-0 outline-none pr-6 pl-2 text-[11px] uppercase tracking-widest text-ink cursor-pointer hover:text-rose transition-colors"
-            >
-              <option value="new">Más recientes</option>
-              <option value="price-asc">Precio: menor</option>
-              <option value="price-desc">Precio: mayor</option>
-              <option value="name">Nombre A-Z</option>
-            </select>
-            <svg className="pointer-events-none absolute right-1 text-thyme" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
+              options={SORT_OPTIONS}
+            />
           </div>
           {searchParams.cat && <input type="hidden" name="cat" value={searchParams.cat} />}
           {searchParams.sale && <input type="hidden" name="sale" value={searchParams.sale} />}
+          {searchParams.sort && <input type="hidden" name="sort" value={searchParams.sort} />}
           <button
             className="rounded-full bg-thyme text-champagne text-[10px] uppercase tracking-[0.2em] px-5 py-2.5 hover:bg-ink transition-colors shrink-0 flex items-center gap-1.5"
             aria-label="Buscar"
