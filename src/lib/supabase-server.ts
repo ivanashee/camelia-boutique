@@ -12,11 +12,11 @@ export function ssrClient() {
   const store = cookies();
   return createServerClient(url, anon, {
     cookies: {
-      get: (name) => store.get(name)?.value,
-      set: (name, value, options: CookieOptions) => {
+      get: (name: string) => store.get(name)?.value,
+      set: (name: string, value: string, options: CookieOptions) => {
         try { store.set({ name, value, ...options }); } catch {}
       },
-      remove: (name, options: CookieOptions) => {
+      remove: (name: string, options: CookieOptions) => {
         try { store.set({ name, value: "", ...options }); } catch {}
       },
     },

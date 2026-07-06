@@ -10,13 +10,13 @@ export async function middleware(req: NextRequest) {
 
   const supabase = createServerClient(url, anon, {
     cookies: {
-      get: (name) => req.cookies.get(name)?.value,
-      set: (name, value, options: CookieOptions) => {
+      get: (name: string) => req.cookies.get(name)?.value,
+      set: (name: string, value: string, options: CookieOptions) => {
         req.cookies.set({ name, value, ...options });
         res = NextResponse.next({ request: { headers: req.headers } });
         res.cookies.set({ name, value, ...options });
       },
-      remove: (name, options: CookieOptions) => {
+      remove: (name: string, options: CookieOptions) => {
         req.cookies.set({ name, value: "", ...options });
         res = NextResponse.next({ request: { headers: req.headers } });
         res.cookies.set({ name, value: "", ...options });
