@@ -63,7 +63,8 @@ export default function MobileMenu() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
-              className="fixed top-0 right-0 z-50 h-full w-[86%] max-w-sm bg-cream text-ink shadow-2xl md:hidden overflow-hidden flex flex-col"
+              className="fixed inset-y-0 right-0 z-50 w-[86%] max-w-sm bg-cream text-ink shadow-2xl md:hidden overflow-hidden flex flex-col"
+              style={{ height: "100dvh" }}
             >
               {/* Ornamento decorativo esquina */}
               <div className="absolute -top-6 -right-6 opacity-45 pointer-events-none">
