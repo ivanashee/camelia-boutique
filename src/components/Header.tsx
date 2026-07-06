@@ -11,7 +11,6 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-ink">
           <Link href="/">Inicio</Link>
           <Link href="/catalogo">Catálogo</Link>
-          <Link href="/catalogo?featured=1">Destacados</Link>
           <Link href="/catalogo?cat=accesorios">Accesorios</Link>
         </nav>
         <div className="flex items-center gap-5">

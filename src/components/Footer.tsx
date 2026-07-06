@@ -18,7 +18,6 @@ export default function Footer() {
           <div className="eyebrow text-champagne/70 mb-3">Tienda</div>
           <ul className="space-y-2 text-sm">
             <li><Link href="/catalogo">Catálogo</Link></li>
-            <li><Link href="/catalogo?featured=1">Destacados</Link></li>
             <li><Link href="/carrito">Carrito</Link></li>
             <li><Link href="/admin">Admin</Link></li>
           </ul>

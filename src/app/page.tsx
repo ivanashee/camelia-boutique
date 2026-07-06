@@ -95,14 +95,11 @@ export default async function HomePage() {
           <Ornament size={140} variant="spray" opacity={0.3} />
         </div>
         <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 relative">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <div className="eyebrow mb-2">— Destacados</div>
-              <h2 className="font-serif text-3xl md:text-4xl text-ink">
-                Favoritos de la <span className="italic text-rose">temporada</span>
-              </h2>
-            </div>
-            <Link href="/catalogo?featured=1" className="text-sm text-thyme border-b border-thyme">Ver todos →</Link>
+          <div className="mb-8">
+            <div className="eyebrow mb-2">— Destacados</div>
+            <h2 className="font-serif text-3xl md:text-4xl text-ink">
+              Favoritos de la <span className="italic text-rose">temporada</span>
+            </h2>
           </div>
           <FeaturedStack products={featured.slice(0, 8)} />
         </div>
