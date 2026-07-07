@@ -44,6 +44,17 @@ body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
+/* Marquee — scroll horizontal infinito para banners/texto de fondo */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 45s linear infinite; }
+.marquee-track-fast { animation: marquee 22s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .marquee-track-fast { animation: none; }
+}
+
 /* Ken Burns — zoom + pan sutil continuo para fotos */
 @keyframes kenBurns {
   0%   { transform: scale(1) translate(0, 0); }

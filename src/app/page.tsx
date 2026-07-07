@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FeaturedStack from "@/components/FeaturedStack";
 import Ornament from "@/components/Ornament";
+import ProductCard from "@/components/ProductCard";
 import { RandomLetterSwapPingPong } from "@/components/RandomLetterSwap";
 import Reveal, { StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ScrollOrnament from "@/components/ScrollOrnament";
@@ -22,8 +23,9 @@ const CATEGORY_IMG: Record<string, string> = {
 export const revalidate = 0;
 
 export default async function HomePage() {
-  const [featured, categories] = await Promise.all([
+  const [featured, sale, categories] = await Promise.all([
     getProducts({ featured: true }),
+    getProducts({ onSale: true }),
     getCategories(),
   ]);
 
@@ -190,6 +192,53 @@ export default async function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ REBAJAS — mini sección con marquee animado ═══ */}
+      {sale.length > 0 && (
+        <section className="relative overflow-hidden py-14 md:py-16 bg-gradient-to-r from-blush/20 via-transparent to-blush/20">
+          {/* Marquee de fondo — texto gigante scrolleando */}
+          <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden select-none">
+            <div className="marquee-track whitespace-nowrap flex text-ink/[0.05] font-serif italic text-[100px] md:text-[180px] leading-none">
+              <span className="pr-12">Ofertas · Sale · Rebajas · Ofertas · Sale · Rebajas · </span>
+              <span className="pr-12">Ofertas · Sale · Rebajas · Ofertas · Sale · Rebajas · </span>
+            </div>
+          </div>
+
+          <div className="max-w-6xl mx-auto px-5 md:px-8 relative">
+            <Reveal direction="up">
+              <div className="flex items-end justify-between mb-6 flex-wrap gap-4">
+                <div>
+                  <div className="eyebrow mb-2 text-rose">— Rebajas</div>
+                  <h2 className="font-serif text-3xl md:text-4xl text-ink">
+                    Hasta <span className="italic text-rose">-35%</span> off
+                  </h2>
+                </div>
+                <Link
+                  href="/catalogo?sale=1"
+                  className="group relative inline-flex items-center gap-2 text-sm text-rose hover:text-ink transition-colors pb-1.5"
+                >
+                  <span className="tracking-widest uppercase text-[11px]">Ver todas</span>
+                  <span className="inline-block group-hover:translate-x-2 transition-transform duration-300">→</span>
+                  <span className="absolute left-0 bottom-0 h-px w-full bg-rose/40" />
+                  <span className="absolute left-0 bottom-0 h-px w-0 bg-rose group-hover:w-full transition-all duration-500 ease-out" />
+                </Link>
+              </div>
+            </Reveal>
+
+            <StaggerGroup
+              className="grid grid-cols-2 md:grid-cols-4 gap-4"
+              stagger={0.08}
+              amount={0.15}
+            >
+              {sale.slice(0, 4).map((p) => (
+                <StaggerItem key={p.id}>
+                  <ProductCard p={p} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
+        </section>
+      )}
 
       {/* Categorías — stagger de cards */}
       <section className="max-w-6xl mx-auto px-5 md:px-8 py-20">
