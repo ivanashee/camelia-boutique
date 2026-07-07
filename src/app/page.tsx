@@ -76,31 +76,31 @@ export default async function HomePage() {
           </svg>
         </div>
 
-        <div className="max-w-6xl mx-auto px-5 md:pl-20 md:pr-8 py-20 md:py-32 relative">
+        <div className="max-w-6xl mx-auto px-5 md:pl-20 md:pr-8 py-16 md:py-20 relative">
           <Reveal direction="up" className="max-w-xl relative">
             {/* Eyebrow con rule */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="block h-px w-10 bg-thyme/60" />
+            <div className="flex items-center gap-3 mb-4">
+              <span className="block h-px w-8 bg-thyme/60" />
               <div className="eyebrow">Colección Otoño · Invierno 2026</div>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl leading-[1.02] text-ink">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-[1.05] text-ink">
               Prendas que <span className="italic text-rose">florecen</span> con vos.
             </h1>
 
             {/* Divider floral */}
-            <div className="flex items-center gap-3 mt-6">
-              <span className="block h-px w-8 bg-rose/40" />
-              <span className="text-rose">✿</span>
-              <span className="block h-px w-8 bg-rose/40" />
+            <div className="flex items-center gap-2 mt-4">
+              <span className="block h-px w-6 bg-rose/40" />
+              <span className="text-rose text-sm">✿</span>
+              <span className="block h-px w-6 bg-rose/40" />
             </div>
 
-            <p className="text-muted mt-6 md:text-lg leading-relaxed max-w-md">
+            <p className="text-muted mt-4 text-sm md:text-base leading-relaxed max-w-md">
               Sacos, suéteres, remeras y bufandas seleccionados a mano. Diseños atemporales,
               telas nobles y hecho en talleres locales.
             </p>
 
-            <div className="flex flex-wrap gap-3 mt-8">
+            <div className="flex flex-wrap gap-3 mt-6">
               <Link href="/catalogo" className="group btn-primary inline-flex items-center gap-2">
                 <span>Ver colección</span>
                 <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -108,24 +108,6 @@ export default async function HomePage() {
               <Link href="/catalogo?featured=1" className="btn-outline">
                 Lo más nuevo
               </Link>
-            </div>
-
-            {/* Stats/highlights inferiores */}
-            <div className="mt-12 flex items-center gap-6 md:gap-10">
-              <div>
-                <div className="font-serif text-3xl md:text-4xl text-ink leading-none">50<span className="text-rose">+</span></div>
-                <div className="text-[10px] uppercase tracking-[0.24em] text-thyme mt-2">Diseños</div>
-              </div>
-              <div className="h-10 w-px bg-thyme/25" />
-              <div>
-                <div className="font-serif text-3xl md:text-4xl text-ink leading-none">100<span className="text-rose">%</span></div>
-                <div className="text-[10px] uppercase tracking-[0.24em] text-thyme mt-2">Hecho en Py</div>
-              </div>
-              <div className="h-10 w-px bg-thyme/25 hidden sm:block" />
-              <div className="hidden sm:block">
-                <div className="font-serif text-3xl md:text-4xl text-ink leading-none">7<span className="text-rose">d</span></div>
-                <div className="text-[10px] uppercase tracking-[0.24em] text-thyme mt-2">Cambios</div>
-              </div>
             </div>
           </Reveal>
         </div>
