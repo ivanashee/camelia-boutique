@@ -44,23 +44,6 @@ body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
-/* ═══ Cursor rose de la paleta — arrow + pointer ═══
-   Ambos en rose #C87D87 con outline ink #3a2f2a para mantener consistente
-   la paleta al hoverear links/botones. */
-body {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M2 2 L2 18 L7 14 L10 22 L13 21 L10 13 L16 13 Z' fill='%23C87D87' stroke='%233a2f2a' stroke-width='0.8' stroke-linejoin='round'/></svg>") 2 2, default;
-}
-
-a, button, [role='button'], input, select, textarea, label, summary,
-[data-cursor='hover'] {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M11 2 L13 2 L13 12 L17 12 L17 20 L5 20 L5 12 L11 12 Z' fill='%23C87D87' stroke='%233a2f2a' stroke-width='0.8' stroke-linejoin='round'/></svg>") 12 2, pointer;
-}
-
-input[type='text'], input[type='email'], input[type='number'], input[type='tel'],
-input[type='search'], input[type='password'], textarea {
-  cursor: text;
-}
-
 /* Marquee — scroll horizontal infinito para banners/texto de fondo */
 @keyframes marquee {
   from { transform: translateX(0); }
