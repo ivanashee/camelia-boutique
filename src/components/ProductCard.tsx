@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 import Ornament from "./Ornament";
-import TransitionLink from "./TransitionLink";
 import { formatGs } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -25,7 +25,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const finalPrice = hasDiscount ? Math.round(p.price * (1 - p.discount! / 100)) : p.price;
 
   return (
-    <TransitionLink
+    <Link
       href={`/producto/${p.slug}`}
       className="group bg-cream rounded-2xl overflow-hidden border border-champagne hover:shadow-lg transition-shadow"
     >
@@ -37,7 +37,6 @@ export default function ProductCard({ p }: { p: Product }) {
             fill
             sizes="(max-width: 768px) 50vw, 25vw"
             className="object-cover group-hover:scale-105 transition-transform duration-700"
-            style={{ viewTransitionName: `image-${p.slug}` }}
           />
         )}
 
@@ -82,6 +81,6 @@ export default function ProductCard({ p }: { p: Product }) {
           <div className="text-[11px] text-thyme">{p.stock} en stock</div>
         </div>
       </div>
-    </TransitionLink>
+    </Link>
   );
 }

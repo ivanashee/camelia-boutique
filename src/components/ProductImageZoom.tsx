@@ -6,7 +6,6 @@ type Props = {
   src: string;
   alt: string;
   bg?: string;
-  viewTransitionName?: string;
 };
 
 /**
@@ -15,7 +14,7 @@ type Props = {
  *   que el usuario mira. cursor-zoom-in visual.
  * - Mobile: toca para hacer toggle entre 1x y 2x centrado.
  */
-export default function ProductImageZoom({ src, alt, bg, viewTransitionName }: Props) {
+export default function ProductImageZoom({ src, alt, bg }: Props) {
   const [pos, setPos] = useState({ x: 50, y: 50 });
   const [zoomed, setZoomed] = useState(false);
   const [tapZoom, setTapZoom] = useState(false);
@@ -51,7 +50,6 @@ export default function ProductImageZoom({ src, alt, bg, viewTransitionName }: P
         style={{
           transform: isZoomed ? "scale(1.8)" : "scale(1)",
           transformOrigin: `${pos.x}% ${pos.y}%`,
-          viewTransitionName,
         }}
       />
 
