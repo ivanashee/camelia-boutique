@@ -250,43 +250,43 @@ export default async function HomePage() {
       <section className="max-w-6xl mx-auto px-5 md:px-8 py-20 relative">
         {/* Florcitas animadas dispersas — llenan el blanco sin cargar */}
         <SpinningOrnament
-          className="absolute top-4 left-2 md:left-8 opacity-30 pointer-events-none hidden sm:block"
+          className="absolute top-4 left-2 md:left-8 opacity-35 pointer-events-none hidden sm:block"
           duration={36}
         >
-          <Ornament size={50} variant="bud" opacity={0.55} />
+          <Ornament size={110} variant="bud" opacity={0.55} />
         </SpinningOrnament>
         <SpinningOrnament
           className="absolute top-24 right-1/4 opacity-25 pointer-events-none"
           duration={28}
           reverse
         >
-          <Ornament size={44} opacity={0.5} />
+          <Ornament size={90} opacity={0.5} />
         </SpinningOrnament>
         <SpinningOrnament
           className="absolute top-1/2 -left-4 opacity-30 pointer-events-none hidden md:block"
           duration={42}
           reverse
         >
-          <Ornament size={65} variant="spray" opacity={0.4} />
+          <Ornament size={140} variant="spray" opacity={0.4} />
         </SpinningOrnament>
         <SpinningOrnament
           className="absolute top-1/3 right-8 opacity-25 pointer-events-none hidden md:block"
           duration={32}
         >
-          <Ornament size={50} variant="bud" opacity={0.5} />
+          <Ornament size={110} variant="bud" opacity={0.5} />
         </SpinningOrnament>
         <SpinningOrnament
           className="absolute bottom-8 left-1/3 opacity-25 pointer-events-none"
           duration={38}
           reverse
         >
-          <Ornament size={40} opacity={0.55} />
+          <Ornament size={90} opacity={0.55} />
         </SpinningOrnament>
         <SpinningOrnament
           className="absolute bottom-16 right-4 md:right-12 opacity-30 pointer-events-none"
           duration={30}
         >
-          <Ornament size={55} variant="bud" opacity={0.5} />
+          <Ornament size={120} variant="bud" opacity={0.5} />
         </SpinningOrnament>
         <Reveal direction="left" y={30}>
           <div className="flex items-end justify-between mb-8">
