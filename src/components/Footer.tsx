@@ -1,23 +1,29 @@
 import NavLink from "./NavLink";
 import Ornament from "./Ornament";
 
-/** Pajarito minimalista tipo silueta de golondrina */
-function BirdIcon() {
+/** Mariposa minimalista — 4 alas ovaladas + cuerpo */
+function ButterflyIcon() {
   return (
     <svg
-      width="20"
-      height="10"
-      viewBox="0 0 24 10"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      width="18"
+      height="15"
+      viewBox="0 0 24 20"
       className="text-blush shrink-0"
       aria-hidden
     >
-      <path d="M 1 7 C 4 2, 8 2, 12 6" />
-      <path d="M 12 6 C 16 2, 20 2, 23 7" />
+      {/* cuerpo */}
+      <ellipse cx="12" cy="10" rx="0.7" ry="7" fill="currentColor" opacity="0.55" />
+      {/* ala superior izq */}
+      <ellipse cx="7" cy="7" rx="5" ry="3.5" transform="rotate(-25 7 7)" fill="currentColor" opacity="0.85" />
+      {/* ala superior der */}
+      <ellipse cx="17" cy="7" rx="5" ry="3.5" transform="rotate(25 17 7)" fill="currentColor" opacity="0.85" />
+      {/* ala inferior izq */}
+      <ellipse cx="8" cy="14" rx="3.5" ry="2.5" transform="rotate(20 8 14)" fill="currentColor" opacity="0.7" />
+      {/* ala inferior der */}
+      <ellipse cx="16" cy="14" rx="3.5" ry="2.5" transform="rotate(-20 16 14)" fill="currentColor" opacity="0.7" />
+      {/* antenas */}
+      <path d="M 12 3.5 C 11 2, 10.5 2, 10.5 3" fill="none" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.7" />
+      <path d="M 12 3.5 C 13 2, 13.5 2, 13.5 3" fill="none" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.7" />
     </svg>
   );
 }
@@ -74,8 +80,8 @@ export default function Footer() {
         <div>
           <div className="eyebrow text-champagne/70 mb-4 flex items-center gap-2">
             <span className="text-blush">✿</span>
-            <span className="flex-1">Tienda</span>
-            <BirdIcon />
+            <span>Tienda</span>
+            <ButterflyIcon />
           </div>
           <ul className="space-y-2.5">
             <li><NavLink variant="footer" href="/catalogo">Catálogo</NavLink></li>
@@ -89,8 +95,8 @@ export default function Footer() {
         <div>
           <div className="eyebrow text-champagne/70 mb-4 flex items-center gap-2">
             <span className="text-blush">✿</span>
-            <span className="flex-1">Contacto</span>
-            <BirdIcon />
+            <span>Contacto</span>
+            <ButterflyIcon />
           </div>
           <ul className="space-y-2.5 text-sm text-champagne/85">
             <li>
