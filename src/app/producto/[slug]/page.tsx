@@ -5,6 +5,7 @@ import AddToCart from "@/components/AddToCart";
 import FavoriteButton from "@/components/FavoriteButton";
 import Ornament from "@/components/Ornament";
 import ProductCard from "@/components/ProductCard";
+import ProductImageZoom from "@/components/ProductImageZoom";
 import { getProductBySlug, getRelated } from "@/lib/data";
 import { formatGs } from "@/lib/format";
 
@@ -38,26 +39,19 @@ export default async function ProductoPage({ params }: { params: { slug: string 
 
       <div className="grid md:grid-cols-2 gap-10">
         <div>
-          <div
-            className="aspect-[4/5] rounded-2xl relative overflow-hidden flex items-center justify-center"
-            style={{ background: bg }}
-          >
+          <div className="aspect-[4/5] rounded-2xl relative overflow-hidden">
             {isUrl ? (
-              <Image
-                src={firstImg}
-                alt={p.name}
-                fill
-                sizes="(max-width:768px) 100vw, 50vw"
-                className="object-cover"
-                priority
-              />
+              <ProductImageZoom src={firstImg} alt={p.name} bg={bg} />
             ) : (
-              <>
+              <div
+                className="w-full h-full flex items-center justify-center relative"
+                style={{ background: bg }}
+              >
                 <div className="absolute top-4 left-4 opacity-25">
                   <Ornament size={70} opacity={0.5} />
                 </div>
                 <Ornament size={260} opacity={0.75} />
-              </>
+              </div>
             )}
             {p.stock === 0 && (
               <div className="absolute bottom-4 right-4 text-xs uppercase tracking-widest bg-ink/80 text-champagne rounded px-3 py-1.5 z-10">

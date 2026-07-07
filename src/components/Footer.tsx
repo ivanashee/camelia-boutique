@@ -1,6 +1,27 @@
 import NavLink from "./NavLink";
 import Ornament from "./Ornament";
 
+/** Pajarito minimalista tipo silueta de golondrina */
+function BirdIcon() {
+  return (
+    <svg
+      width="20"
+      height="10"
+      viewBox="0 0 24 10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-blush shrink-0"
+      aria-hidden
+    >
+      <path d="M 1 7 C 4 2, 8 2, 12 6" />
+      <path d="M 12 6 C 16 2, 20 2, 23 7" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-thyme text-champagne mt-20">
@@ -50,12 +71,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="text-center">
-          <div className="eyebrow text-champagne/70 mb-4 flex flex-col items-center gap-1.5">
+        <div>
+          <div className="eyebrow text-champagne/70 mb-4 flex items-center gap-2">
             <span className="text-blush">✿</span>
-            <span>Tienda</span>
+            <span className="flex-1">Tienda</span>
+            <BirdIcon />
           </div>
-          <ul className="space-y-2.5 flex flex-col items-center">
+          <ul className="space-y-2.5">
             <li><NavLink variant="footer" href="/catalogo">Catálogo</NavLink></li>
             <li><NavLink variant="footer" href="/catalogo?sale=1">Rebajas</NavLink></li>
             <li><NavLink variant="footer" href="/quienes-somos">Quiénes somos</NavLink></li>
@@ -64,10 +86,11 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="text-center">
-          <div className="eyebrow text-champagne/70 mb-4 flex flex-col items-center gap-1.5">
+        <div>
+          <div className="eyebrow text-champagne/70 mb-4 flex items-center gap-2">
             <span className="text-blush">✿</span>
-            <span>Contacto</span>
+            <span className="flex-1">Contacto</span>
+            <BirdIcon />
           </div>
           <ul className="space-y-2.5 text-sm text-champagne/85">
             <li>

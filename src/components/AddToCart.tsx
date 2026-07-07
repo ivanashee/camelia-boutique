@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useCart } from "@/lib/cart-store";
+import { useToast } from "@/lib/toast-store";
 import type { Product } from "@/lib/types";
 
 export default function AddToCart({ product }: { product: Product }) {
@@ -76,6 +77,7 @@ export default function AddToCart({ product }: { product: Product }) {
             stock: product.stock,
             image: product.images?.[0],
           });
+          useToast.getState().show(`¡${displayName} agregado!`);
           setAdded(true);
           setTimeout(() => setAdded(false), 1500);
         }}
