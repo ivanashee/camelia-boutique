@@ -25,17 +25,25 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero — ornamentos con parallax rotativo al scroll */}
+      {/* Hero — editorial con marker vertical + capas de ornamentos */}
       <section
         className="relative overflow-hidden"
         style={{ background: "linear-gradient(120deg,#F0C4CB 0%,#FBEAD6 50%,#E5BCA9 100%)" }}
       >
+        {/* Ornamentos con parallax */}
         <ScrollOrnament
-          className="absolute -top-10 -right-10 opacity-55 pointer-events-none"
+          className="absolute -top-16 -right-16 opacity-55 pointer-events-none"
           rotate={60}
           y={-80}
         >
-          <Ornament size={360} opacity={0.55} />
+          <Ornament size={420} opacity={0.6} />
+        </ScrollOrnament>
+        <ScrollOrnament
+          className="absolute top-1/3 right-1/4 opacity-25 pointer-events-none hidden md:block"
+          rotate={-30}
+          y={-40}
+        >
+          <Ornament size={150} variant="bud" opacity={0.35} />
         </ScrollOrnament>
         <ScrollOrnament
           className="absolute -bottom-16 -left-10 opacity-40 pointer-events-none"
@@ -47,21 +55,91 @@ export default async function HomePage() {
           </div>
         </ScrollOrnament>
 
-        <div className="max-w-6xl mx-auto px-5 md:px-8 py-24 md:py-32 relative">
-          <Reveal direction="up" className="max-w-xl">
-            <div className="eyebrow mb-5">Colección Otoño · Invierno</div>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[1] text-ink">
+        {/* Marker vertical estilo editorial */}
+        <div
+          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 items-center gap-3 rotate-180 text-[10px] uppercase tracking-[0.5em] text-thyme/60 pointer-events-none"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          <span>Camélia · Est. 2024</span>
+          <span className="w-16 h-px bg-thyme/40 rotate-180" />
+        </div>
+
+        {/* Corner marks — top-left + top-right */}
+        <div className="hidden md:block absolute top-8 left-12 opacity-50">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" stroke="#6B7556" strokeWidth="1" strokeLinecap="round">
+            <path d="M2 2 L 14 2 M 2 2 L 2 14" />
+          </svg>
+        </div>
+        <div className="hidden md:block absolute top-8 right-8 opacity-50">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" stroke="#6B7556" strokeWidth="1" strokeLinecap="round">
+            <path d="M38 2 L 26 2 M 38 2 L 38 14" />
+          </svg>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-5 md:pl-20 md:pr-8 py-20 md:py-32 relative">
+          <Reveal direction="up" className="max-w-xl relative">
+            {/* Eyebrow con rule */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="block h-px w-10 bg-thyme/60" />
+              <div className="eyebrow">Colección Otoño · Invierno 2026</div>
+            </div>
+
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl leading-[1.02] text-ink">
               Prendas que <span className="italic text-rose">florecen</span> con vos.
             </h1>
+
+            {/* Divider floral */}
+            <div className="flex items-center gap-3 mt-6">
+              <span className="block h-px w-8 bg-rose/40" />
+              <span className="text-rose">✿</span>
+              <span className="block h-px w-8 bg-rose/40" />
+            </div>
+
             <p className="text-muted mt-6 md:text-lg leading-relaxed max-w-md">
               Sacos, suéteres, remeras y bufandas seleccionados a mano. Diseños atemporales,
               telas nobles y hecho en talleres locales.
             </p>
+
             <div className="flex flex-wrap gap-3 mt-8">
-              <Link href="/catalogo" className="btn-primary">Ver colección</Link>
-              <Link href="/catalogo?featured=1" className="btn-outline">Lo más nuevo</Link>
+              <Link href="/catalogo" className="group btn-primary inline-flex items-center gap-2">
+                <span>Ver colección</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+              <Link href="/catalogo?featured=1" className="btn-outline">
+                Lo más nuevo
+              </Link>
+            </div>
+
+            {/* Stats/highlights inferiores */}
+            <div className="mt-12 flex items-center gap-6 md:gap-10">
+              <div>
+                <div className="font-serif text-3xl md:text-4xl text-ink leading-none">50<span className="text-rose">+</span></div>
+                <div className="text-[10px] uppercase tracking-[0.24em] text-thyme mt-2">Diseños</div>
+              </div>
+              <div className="h-10 w-px bg-thyme/25" />
+              <div>
+                <div className="font-serif text-3xl md:text-4xl text-ink leading-none">100<span className="text-rose">%</span></div>
+                <div className="text-[10px] uppercase tracking-[0.24em] text-thyme mt-2">Hecho en Py</div>
+              </div>
+              <div className="h-10 w-px bg-thyme/25 hidden sm:block" />
+              <div className="hidden sm:block">
+                <div className="font-serif text-3xl md:text-4xl text-ink leading-none">7<span className="text-rose">d</span></div>
+                <div className="text-[10px] uppercase tracking-[0.24em] text-thyme mt-2">Cambios</div>
+              </div>
             </div>
           </Reveal>
+        </div>
+
+        {/* Corner marks — bottom */}
+        <div className="hidden md:block absolute bottom-8 left-12 opacity-50">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" stroke="#6B7556" strokeWidth="1" strokeLinecap="round">
+            <path d="M2 38 L 14 38 M 2 38 L 2 26" />
+          </svg>
+        </div>
+        <div className="hidden md:block absolute bottom-8 right-8 opacity-50">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" stroke="#6B7556" strokeWidth="1" strokeLinecap="round">
+            <path d="M38 38 L 26 38 M 38 38 L 38 26" />
+          </svg>
         </div>
       </section>
 
