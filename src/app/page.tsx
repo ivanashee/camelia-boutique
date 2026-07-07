@@ -56,14 +56,50 @@ export default async function HomePage() {
           </div>
         </ScrollOrnament>
 
-        {/* Marker vertical estilo editorial */}
-        <div
-          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 items-center gap-3 rotate-180 text-[10px] uppercase tracking-[0.5em] text-thyme/60 pointer-events-none"
-          style={{ writingMode: "vertical-rl" }}
+        {/* ═══ MÁS FLORES ANIMADAS ═══ */}
+        {/* Camelia mediana rotando reverse en el borde inferior derecho */}
+        <SpinningOrnament
+          className="absolute bottom-4 right-8 opacity-40 pointer-events-none hidden md:block"
+          duration={52}
+          reverse
         >
-          <span>Camélia</span>
-          <span className="w-16 h-px bg-thyme/40 rotate-180" />
-        </div>
+          <Ornament size={130} variant="spray" opacity={0.5} />
+        </SpinningOrnament>
+
+        {/* Bud chico girando rápido, arriba a la izquierda */}
+        <SpinningOrnament
+          className="absolute top-12 left-1/3 opacity-30 pointer-events-none hidden md:block"
+          duration={24}
+        >
+          <Ornament size={70} variant="bud" opacity={0.45} />
+        </SpinningOrnament>
+
+        {/* Camelia mini flotando cerca del CTA */}
+        <SpinningOrnament
+          className="absolute bottom-24 left-1/2 opacity-25 pointer-events-none hidden md:block"
+          duration={30}
+          reverse
+        >
+          <Ornament size={80} opacity={0.4} />
+        </SpinningOrnament>
+
+        {/* Bud extra chico en la esquina superior derecha */}
+        <SpinningOrnament
+          className="absolute top-8 right-1/3 opacity-30 pointer-events-none"
+          duration={20}
+          reverse
+        >
+          <Ornament size={50} variant="bud" opacity={0.5} />
+        </SpinningOrnament>
+
+        {/* Camelia mini abajo — visible también en mobile */}
+        <SpinningOrnament
+          className="absolute bottom-8 right-4 opacity-25 pointer-events-none md:hidden"
+          duration={32}
+        >
+          <Ornament size={70} variant="bud" opacity={0.4} />
+        </SpinningOrnament>
+
 
         {/* Corner marks — top-left + top-right */}
         <div className="hidden md:block absolute top-8 left-12 opacity-50">
@@ -77,7 +113,7 @@ export default async function HomePage() {
           </svg>
         </div>
 
-        <div className="max-w-6xl mx-auto px-5 md:pl-20 md:pr-8 py-16 md:py-20 relative">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-20 relative">
           <Reveal direction="up" className="max-w-xl relative">
             {/* Eyebrow con rule */}
             <div className="flex items-center gap-3 mb-4">
