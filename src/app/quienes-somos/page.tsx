@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Ornament from "@/components/Ornament";
 import Reveal, { StaggerGroup, StaggerItem } from "@/components/Reveal";
@@ -39,6 +40,47 @@ export default function QuienesSomosPage() {
             <WordReveal text="hechas con las manos." delay={0.6} />
           </h1>
         </div>
+      </section>
+
+      {/* ═══ Foto de la boutique ═══ */}
+      <section className="max-w-5xl mx-auto px-5 md:px-8 pt-16 md:pt-20">
+        <Reveal direction="up" duration={0.9}>
+          <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-champagne shadow-xl">
+            <Image
+              src="/boutique-2.webp"
+              alt="Nuestra tienda Camélia"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1000px"
+              className="object-cover"
+              priority
+            />
+            {/* Gradiente sutil abajo para el caption */}
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+            {/* Caption */}
+            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-10 text-champagne">
+              <div className="eyebrow text-champagne/85 mb-1">— La tienda</div>
+              <div className="font-serif text-2xl md:text-4xl drop-shadow-md">
+                Un rincón <span className="italic text-blush">nuestro</span>
+              </div>
+            </div>
+            {/* Ornamento flotando arriba a la derecha */}
+            <SpinningOrnament
+              className="absolute top-4 right-4 md:top-6 md:right-6 opacity-70 pointer-events-none"
+              duration={40}
+            >
+              <Ornament
+                size={90}
+                variant="bud"
+                stroke="#FBEAD6"
+                fillOuter="#FBEAD6"
+                fillInner="#F0C4CB"
+                fillLeaf="#FBEAD6"
+                fillCenter="#FBEAD6"
+                opacity={0.85}
+              />
+            </SpinningOrnament>
+          </div>
+        </Reveal>
       </section>
 
       {/* ═══ Historia corta ═══ */}

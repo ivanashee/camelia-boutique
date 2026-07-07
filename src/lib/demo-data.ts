@@ -56,7 +56,7 @@ export const demoProducts: Product[] = [
 
   // === BUFANDAS ===
   mk("p7",  "c4", "Bufanda Rose",       "bufanda-rose",        95000, 15, true,  "/products/bufanda-rose.webp",       "Bufanda tejida a mano en antique rose.",                  0),
-  mk("p8",  "c4", "Pashmina Bisque",    "pashmina-bisque",    110000, 9,  false, "#E5BCA9",                           "Pashmina de lana suave en bisque.",                       25),
+  mk("p8",  "c4", "Pashmina Bisque",    "pashmina-bisque",    110000, 9,  false, "/products/pashmina-bisque.webp",    "Pashmina de lana suave en bisque.",                       25),
 
   // === ACCESORIOS ===
   mk("p9",  "c5", "Vincha Camélia",     "vincha-camelia",      45000, 25, false, "#FBEAD6",                           "Vincha con flor de camelia bordada.",                     0),
