@@ -16,7 +16,7 @@ const FALLBACK_BG: Record<string, string> = {
 
 export default function ProductCard({ p }: { p: Product }) {
   const firstImg = p.images?.[0] ?? "";
-  const isUrl = firstImg.startsWith("http");
+  const isUrl = firstImg.startsWith("http") || firstImg.startsWith("/");
   const isColor = firstImg.startsWith("#");
   const fallbackBg = FALLBACK_BG[p.category?.slug ?? ""] ?? "#F0C4CB";
   const bg = isColor ? firstImg : fallbackBg;

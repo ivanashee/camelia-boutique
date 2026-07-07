@@ -1,49 +1,40 @@
 -- ============================================================
--- Camélia — plantilla para asignar fotos a productos
+-- Camélia — asignar fotos locales de /public/products/
+-- Correr en Supabase SQL Editor después del deploy
 -- ============================================================
--- Cómo usar:
---   1. Reemplazá 'REPLACE_ME' en cada línea con la URL pública de la
---      foto correspondiente. Podés usar Supabase Storage, Cloudinary,
---      Imgur, Google Drive (link público), etc.
---   2. Si todavía no tenés la foto de un producto, dejá esa línea con
---      'REPLACE_ME' — el filtro 'like http%' evita actualizarla, y ese
---      producto queda con el ornamento de camelia como fallback.
---   3. Corré el SQL entero en el SQL Editor de Supabase.
+-- Las 8 fotos están en public/products/ del repo — Vercel las sirve
+-- desde el mismo dominio. Los productos sin foto quedan con el
+-- ornamento de camelia como fallback.
 -- ============================================================
 
 set search_path = boutique, public;
 
--- === ABRIGOS ===
-update boutique.products set images = array['REPLACE_ME'] where slug = 'saco-camelia'      and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'tapado-bisque'     and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'trench-champagne'  and 'REPLACE_ME' like 'http%';
+-- === 1. Borrar 'Top Art Nouveau' ===
+delete from boutique.products where slug = 'top-art-nouveau';
 
--- === SUÉTERES ===
-update boutique.products set images = array['REPLACE_ME'] where slug = 'sueter-thyme'       and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'cardigan-champagne' and 'REPLACE_ME' like 'http%';
+-- === 2. Asignar fotos a los que sí tenemos ===
+update boutique.products set images = array['/products/saco-camelia.webp']       where slug = 'saco-camelia';
+update boutique.products set images = array['/products/trench-champagne.webp']   where slug = 'trench-champagne';
+update boutique.products set images = array['/products/sueter-thyme.jpeg']       where slug = 'sueter-thyme';
+update boutique.products set images = array['/products/cardigan-champagne.jpeg'] where slug = 'cardigan-champagne';
+update boutique.products set images = array['/products/remera-blush.webp']       where slug = 'remera-blush';
+update boutique.products set images = array['/products/blusa-antique.jpg']       where slug = 'blusa-antique';
+update boutique.products set images = array['/products/bufanda-rose.webp']       where slug = 'bufanda-rose';
+update boutique.products set images = array['/products/cinturon-thyme.webp']     where slug = 'cinturon-thyme';
 
--- === REMERAS ===
-update boutique.products set images = array['REPLACE_ME'] where slug = 'remera-blush'    and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'blusa-antique'   and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'top-art-nouveau' and 'REPLACE_ME' like 'http%';
+-- Los siguientes NO se actualizan — quedan con el ornamento fallback:
+--   tapado-bisque
+--   pashmina-bisque
+--   vincha-camelia
+-- Cuando tengas fotos para estos, agregá su UPDATE arriba.
 
--- === BUFANDAS ===
-update boutique.products set images = array['REPLACE_ME'] where slug = 'bufanda-rose'    and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'pashmina-bisque' and 'REPLACE_ME' like 'http%';
-
--- === ACCESORIOS ===
-update boutique.products set images = array['REPLACE_ME'] where slug = 'vincha-camelia' and 'REPLACE_ME' like 'http%';
-update boutique.products set images = array['REPLACE_ME'] where slug = 'cinturon-thyme' and 'REPLACE_ME' like 'http%';
-
--- ============================================================
--- Verificación: muestra qué productos ya tienen foto asignada
--- ============================================================
+-- === Verificación ===
 select
   slug,
   case
-    when images[1] like 'http%' then '✓ con foto'
-    else '✗ sin foto (usa ornamento fallback)'
-  end as estado,
-  images[1] as url
+    when images[1] like '/products/%' then '✓ con foto'
+    when images[1] like 'http%' then '✓ con foto (URL)'
+    else '✗ ornamento fallback'
+  end as estado
 from boutique.products
 order by slug;
