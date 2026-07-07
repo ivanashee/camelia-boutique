@@ -51,8 +51,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="eyebrow text-champagne/70 mb-4 flex items-center gap-2">
-            <span className="text-blush">✿</span> Tienda
+          <div className="eyebrow text-champagne/70 mb-4 flex flex-col items-center text-center gap-1.5">
+            <span className="text-blush">✿</span>
+            <span>Tienda</span>
           </div>
           <ul className="space-y-2.5">
             <li><NavLink variant="footer" href="/catalogo">Catálogo</NavLink></li>
@@ -64,8 +65,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="eyebrow text-champagne/70 mb-4 flex items-center gap-2">
-            <span className="text-blush">✿</span> Contacto
+          <div className="eyebrow text-champagne/70 mb-4 flex flex-col items-center text-center gap-1.5">
+            <span className="text-blush">✿</span>
+            <span>Contacto</span>
           </div>
           <ul className="space-y-2.5 text-sm text-champagne/85">
             <li>
