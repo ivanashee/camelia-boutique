@@ -45,13 +45,13 @@ export default function QuienesSomosPage() {
       {/* ═══ Foto de la boutique ═══ */}
       <section className="max-w-5xl mx-auto px-5 md:px-8 pt-16 md:pt-20">
         <Reveal direction="up" duration={0.9}>
-          <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-champagne shadow-xl">
+          <div className="group relative aspect-[16/10] rounded-3xl overflow-hidden border border-champagne shadow-xl">
             <Image
               src="/boutique-2.webp"
               alt="Nuestra tienda Camélia"
               fill
               sizes="(max-width: 1024px) 100vw, 1000px"
-              className="object-cover"
+              className="object-cover ken-burns transition-transform duration-700 group-hover:scale-[1.02]"
               priority
             />
             {/* Gradiente sutil abajo para el caption */}

@@ -44,6 +44,17 @@ body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
+/* Ken Burns — zoom + pan sutil continuo para fotos */
+@keyframes kenBurns {
+  0%   { transform: scale(1) translate(0, 0); }
+  50%  { transform: scale(1.08) translate(-2%, -3%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+.ken-burns { animation: kenBurns 20s ease-in-out infinite; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns { animation: none; }
+}
+
 /* Dual range slider — dos <input type="range"> superpuestos */
 .range-thumb {
   position: absolute;
