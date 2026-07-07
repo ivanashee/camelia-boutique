@@ -5,6 +5,8 @@ import Ornament from "@/components/Ornament";
 import { RandomLetterSwapPingPong } from "@/components/RandomLetterSwap";
 import Reveal, { StaggerGroup, StaggerItem } from "@/components/Reveal";
 import ScrollOrnament from "@/components/ScrollOrnament";
+import SpinningOrnament from "@/components/SpinningOrnament";
+import HeroFlorece from "@/components/HeroFlorece";
 import { getCategories, getProducts } from "@/lib/data";
 
 // Fotos por categoría — Unsplash. Se aplican con mix-blend-luminosity
@@ -38,13 +40,12 @@ export default async function HomePage() {
         >
           <Ornament size={420} opacity={0.6} />
         </ScrollOrnament>
-        <ScrollOrnament
+        <SpinningOrnament
           className="absolute top-1/3 right-1/4 opacity-25 pointer-events-none hidden md:block"
-          rotate={-30}
-          y={-40}
+          duration={38}
         >
           <Ornament size={150} variant="bud" opacity={0.35} />
-        </ScrollOrnament>
+        </SpinningOrnament>
         <ScrollOrnament
           className="absolute -bottom-16 -left-10 opacity-40 pointer-events-none"
           rotate={-45}
@@ -60,7 +61,7 @@ export default async function HomePage() {
           className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 items-center gap-3 rotate-180 text-[10px] uppercase tracking-[0.5em] text-thyme/60 pointer-events-none"
           style={{ writingMode: "vertical-rl" }}
         >
-          <span>Camélia · Est. 2024</span>
+          <span>Camélia</span>
           <span className="w-16 h-px bg-thyme/40 rotate-180" />
         </div>
 
@@ -85,7 +86,7 @@ export default async function HomePage() {
             </div>
 
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-[1.05] text-ink">
-              Prendas que <span className="italic text-rose">florecen</span> con vos.
+              Prendas que <HeroFlorece /> con vos.
             </h1>
 
             {/* Divider floral */}
