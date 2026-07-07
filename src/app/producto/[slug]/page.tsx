@@ -16,6 +16,8 @@ const FALLBACK_BG: Record<string, string> = {
   accesorios: "#E5BCA9",
 };
 
+export const revalidate = 0;
+
 export default async function ProductoPage({ params }: { params: { slug: string } }) {
   const p = await getProductBySlug(params.slug);
   if (!p) notFound();

@@ -19,6 +19,8 @@ const CATEGORY_IMG: Record<string, string> = {
   accesorios: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=80",
 };
 
+export const revalidate = 0;
+
 export default async function HomePage() {
   const [featured, categories] = await Promise.all([
     getProducts({ featured: true }),

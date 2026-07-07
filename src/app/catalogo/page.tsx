@@ -14,6 +14,10 @@ const SORT_OPTIONS = [
   { value: "name",       label: "Nombre A-Z" },
 ];
 
+// Refresca desde Supabase en cada request — evita mostrar imágenes viejas
+// cuando el admin actualiza productos por SQL o desde el panel.
+export const revalidate = 0;
+
 type SP = {
   cat?: string;
   q?: string;
