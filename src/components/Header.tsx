@@ -32,9 +32,9 @@ export default function Header() {
           <span aria-hidden className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo">Catálogo</NavLink>
           <span aria-hidden className="text-rose/50 text-xs">✿</span>
-          <NavLink href="/quienes-somos">Nosotros</NavLink>
-          <span aria-hidden className="text-rose/50 text-xs">✿</span>
           <NavLink href="/catalogo?sale=1" className="text-rose">Rebajas</NavLink>
+          <span aria-hidden className="text-rose/50 text-xs">✿</span>
+          <NavLink href="/quienes-somos">Nosotros</NavLink>
         </nav>
 
         {/* Íconos derecha — cada uno con min tap target 40x40 en mobile */}
