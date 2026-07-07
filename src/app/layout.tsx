@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import KeycapButton from "@/components/KeycapButton";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <KeycapButton />
         <Toast />
+        <CustomCursor />
       </body>
     </html>
   );

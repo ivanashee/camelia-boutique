@@ -41,7 +41,7 @@ export default async function ProductoPage({ params }: { params: { slug: string 
         <div>
           <div className="aspect-[4/5] rounded-2xl relative overflow-hidden">
             {isUrl ? (
-              <ProductImageZoom src={firstImg} alt={p.name} bg={bg} />
+              <ProductImageZoom src={firstImg} alt={p.name} bg={bg} viewTransitionName={`image-${p.slug}`} />
             ) : (
               <div
                 className="w-full h-full flex items-center justify-center relative"

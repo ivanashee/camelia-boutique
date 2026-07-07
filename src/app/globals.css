@@ -44,6 +44,71 @@ body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
+/* ═══ Custom Cursor ═══ */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+html:not(.has-custom-cursor) .cursor-dot,
+html:not(.has-custom-cursor) .cursor-ring {
+  display: none;
+}
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #C87D87;
+  transition: opacity 0.2s, background 0.2s, transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cursor-dot.cursor-dot-hover {
+  background: #FBEAD6;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 125, 135, 0.5);
+  transition: width 0.25s, height 0.25s, margin 0.25s, border-color 0.25s;
+}
+.cursor-ring.cursor-ring-hover {
+  width: 46px;
+  height: 46px;
+  margin: -7px 0 0 -7px;
+  border-color: rgba(200, 125, 135, 0.85);
+}
+
+/* ═══ View Transitions API ═══ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+::view-transition-new(root) {
+  animation-name: fade-in;
+}
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+
+/* Elementos con view-transition-name morphean entre páginas.
+   Se aplica inline via style={{ viewTransitionName: 'image-' + slug }} */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+}
+
 /* Marquee — scroll horizontal infinito para banners/texto de fondo */
 @keyframes marquee {
   from { transform: translateX(0); }
