@@ -215,12 +215,18 @@ export default async function HomePage() {
                 </div>
                 <Link
                   href="/catalogo?sale=1"
-                  className="group relative inline-flex items-center gap-2 text-sm text-rose hover:text-ink transition-colors pb-1.5"
+                  className="group relative inline-flex items-center gap-2 text-sm text-thyme hover:text-rose transition-colors pb-1.5"
                 >
-                  <span className="tracking-widest uppercase text-[11px]">Ver todas</span>
-                  <span className="inline-block group-hover:translate-x-2 transition-transform duration-300">→</span>
-                  <span className="absolute left-0 bottom-0 h-px w-full bg-rose/40" />
+                  <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-rose">
+                    ✿
+                  </span>
+                  <span className="tracking-wide">Ver todas</span>
+                  <span className="inline-block group-hover:translate-x-2 transition-transform duration-300">
+                    →
+                  </span>
+                  <span className="absolute left-0 bottom-0 h-px w-full bg-thyme" />
                   <span className="absolute left-0 bottom-0 h-px w-0 bg-rose group-hover:w-full transition-all duration-500 ease-out" />
+                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 rounded-full bg-rose opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-500" />
                 </Link>
               </div>
             </Reveal>
