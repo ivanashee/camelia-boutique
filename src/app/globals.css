@@ -30,6 +30,13 @@ body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 }
 .label { @apply block text-[11px] uppercase tracking-widest text-thyme mb-1.5; }
 
+/* Checkboxes y radios en rose de la paleta (nativo, respeta accesibilidad) */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #C87D87;
+  cursor: pointer;
+}
+
 /* Tablas de admin — buena legibilidad */
 .admin-table { @apply w-full text-sm text-ink; }
 .admin-table thead th {
