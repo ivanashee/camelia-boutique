@@ -35,9 +35,7 @@ export default function FeaturedStack({ products }: { products: Product[] }) {
           const flexClass = isHovered
             ? "flex-[2.5]"
             : noneHovered
-            ? idx === 0
-              ? "flex-[1.4]"
-              : "flex-1"
+            ? "flex-1"
             : "flex-[0.85]";
 
           return (
