@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CODE = "CAMELIA10";
-const STORAGE_KEY = "camelia-promo-dismissed";
 
 // 8 florcitas con parámetros distintos → movimiento orquestado, no sincro
 const FLOWERS = [
@@ -20,16 +19,8 @@ const FLOWERS = [
 export default function PromoBar() {
   const [copied, setCopied] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    try {
-      setDismissed(localStorage.getItem(STORAGE_KEY) === "1");
-    } catch {
-      /* noop */
-    }
-  }, []);
+  const [dispersing, setDispersing] = useState(false);
+  const flowerRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   const handleCopy = async () => {
     try {
@@ -42,18 +33,35 @@ export default function PromoBar() {
     }
   };
 
-  const handleDismiss = () => {
-    setDismissed(true);
-    try {
-      localStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* noop */
-    }
+  const handleDismiss = () => setDismissed(true);
+
+  // Al clickear el fondo (cuando ya está en modo flores) → dispersión random
+  const handleScatter = () => {
+    if (dispersing) return;
+    flowerRefs.current.forEach((el) => {
+      if (!el) return;
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 40 + Math.random() * 70;
+      el.style.setProperty("--sx", `${Math.cos(angle) * distance}px`);
+      el.style.setProperty("--sy", `${Math.sin(angle) * distance}px`);
+    });
+    setDispersing(true);
+    setTimeout(() => setDispersing(false), 1200);
   };
 
+  // Reset refs cuando cambia el modo
+  useEffect(() => {
+    if (dismissed) flowerRefs.current = new Array(FLOWERS.length).fill(null);
+  }, [dismissed]);
+
   return (
-    <div className="relative bg-thyme text-champagne text-[10px] md:text-[11px] tracking-[0.28em] uppercase min-h-[36px] py-2 flex items-center justify-center gap-3 overflow-hidden px-3">
-      {mounted && !dismissed ? (
+    <div
+      className={`relative bg-thyme text-champagne text-[10px] md:text-[11px] tracking-[0.28em] uppercase min-h-[36px] py-2 flex items-center justify-center gap-3 overflow-hidden px-3 ${
+        dismissed ? "cursor-pointer" : ""
+      } ${dispersing ? "dispersing" : ""}`}
+      onClick={dismissed ? handleScatter : undefined}
+    >
+      {!dismissed ? (
         <>
           <button
             onClick={handleCopy}
@@ -92,25 +100,24 @@ export default function PromoBar() {
           </button>
         </>
       ) : (
-        mounted && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-            {FLOWERS.map((f, i) => (
-              <span
-                key={i}
-                className={f.reverse ? "flying-flower-cw" : "flying-flower-ccw"}
-                style={{
-                  top: f.top,
-                  fontSize: f.size,
-                  animationDuration: `${f.duration}s`,
-                  animationDelay: `${f.delay}s`,
-                  color: "#F0C4CB",
-                }}
-              >
-                ✿
-              </span>
-            ))}
-          </div>
-        )
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+          {FLOWERS.map((f, i) => (
+            <span
+              key={i}
+              ref={(el) => { flowerRefs.current[i] = el; }}
+              className={f.reverse ? "flying-flower-cw" : "flying-flower-ccw"}
+              style={{
+                top: f.top,
+                fontSize: f.size,
+                animationDuration: `${f.duration}s`,
+                animationDelay: `${f.delay}s`,
+                color: "#F0C4CB",
+              }}
+            >
+              ✿
+            </span>
+          ))}
+        </div>
       )}
     </div>
   );
