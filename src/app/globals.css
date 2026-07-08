@@ -79,19 +79,6 @@ input[type="radio"] {
 .flying-flower-cw  { animation-name: fly-left-cw;  }
 .flying-flower-ccw { animation-name: fly-left-ccw; }
 
-/* Scatter — al clickear el fondo, las flores se dispersan aleatoriamente
-   y vuelven a su rumbo. Cada flor tiene --sx, --sy setados por JS. */
-@keyframes scatter {
-  0%   { transform: translate(0, 0)              rotate(0deg);   opacity: 0.9; }
-  40%  { transform: translate(var(--sx, 0), var(--sy, 0)) rotate(180deg); opacity: 1; }
-  100% { transform: translate(0, 0)              rotate(360deg); opacity: 0.9; }
-}
-.dispersing .flying-flower-cw,
-.dispersing .flying-flower-ccw {
-  animation: scatter 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-  opacity: 1;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .flying-flower-cw, .flying-flower-ccw { animation: none; opacity: 0; }
 }
