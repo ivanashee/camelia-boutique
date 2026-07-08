@@ -51,30 +51,25 @@ input[type="radio"] {
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
-/* Florcitas que salen del árbol (right: 0-60px) y vuelan a la izquierda */
+/* Florcitas que entran desde la derecha off-screen y cruzan la barra */
 @keyframes fly-left-cw {
-  0%   { transform: translateX(-30px) translateY(0)   rotate(0deg);   opacity: 0; }
-  5%   { transform: translateX(-32px) translateY(-1px) rotate(20deg);  opacity: 1; }
-  50%  { transform: translateX(-50vw) translateY(-3px) rotate(180deg); opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(360deg); opacity: 0; }
+  0%   { transform: translateX(80px)  translateY(0)   rotate(0deg); }
+  50%  { transform: translateX(-50vw) translateY(-3px) rotate(180deg); }
+  100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(360deg); }
 }
 @keyframes fly-left-ccw {
-  0%   { transform: translateX(-30px) translateY(0)   rotate(0deg);    opacity: 0; }
-  5%   { transform: translateX(-32px) translateY(1px)  rotate(-20deg);  opacity: 1; }
-  50%  { transform: translateX(-50vw) translateY(3px)  rotate(-180deg); opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(-360deg); opacity: 0; }
+  0%   { transform: translateX(80px)  translateY(0)   rotate(0deg); }
+  50%  { transform: translateX(-50vw) translateY(3px)  rotate(-180deg); }
+  100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(-360deg); }
 }
 .flying-flower-cw,
 .flying-flower-ccw {
   position: absolute;
   right: 0;
-  opacity: 0;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: backwards;
-  will-change: transform, opacity;
+  will-change: transform;
 }
 .flying-flower-cw  { animation-name: fly-left-cw;  }
 .flying-flower-ccw { animation-name: fly-left-ccw; }
