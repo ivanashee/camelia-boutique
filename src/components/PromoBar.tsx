@@ -35,18 +35,18 @@ export default function PromoBar() {
 
   const handleDismiss = () => setDismissed(true);
 
-  // Al clickear el fondo (cuando ya está en modo flores) → dispersión random
+  // Al clickear el fondo → dispersión sutil (temblor tipo brisa)
   const handleScatter = () => {
     if (dispersing) return;
     flowerRefs.current.forEach((el) => {
       if (!el) return;
       const angle = Math.random() * Math.PI * 2;
-      const distance = 40 + Math.random() * 70;
+      const distance = 6 + Math.random() * 12; // 6-18px, apenas un temblor
       el.style.setProperty("--sx", `${Math.cos(angle) * distance}px`);
       el.style.setProperty("--sy", `${Math.sin(angle) * distance}px`);
     });
     setDispersing(true);
-    setTimeout(() => setDispersing(false), 1200);
+    setTimeout(() => setDispersing(false), 1000);
   };
 
   // Reset refs cuando cambia el modo
@@ -101,6 +101,59 @@ export default function PromoBar() {
         </>
       ) : (
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+          {/* Arbolito estilo cerezo — anclado bottom-right, ramas whiplash */}
+          <svg
+            className="absolute bottom-0 right-0"
+            width="66"
+            height="40"
+            viewBox="0 0 66 40"
+            fill="none"
+          >
+            {/* Tronco principal con curva whiplash */}
+            <path
+              d="M 62 40 C 56 32, 52 24, 44 14"
+              stroke="#FBEAD6"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+              opacity="0.95"
+            />
+            {/* Rama superior-izquierda */}
+            <path
+              d="M 48 22 C 42 18, 34 15, 24 10"
+              stroke="#FBEAD6"
+              strokeWidth="1"
+              strokeLinecap="round"
+              opacity="0.8"
+            />
+            {/* Rama superior-derecha */}
+            <path
+              d="M 54 26 C 56 22, 58 16, 62 8"
+              stroke="#FBEAD6"
+              strokeWidth="1"
+              strokeLinecap="round"
+              opacity="0.7"
+            />
+            {/* Ramita chica intermedia */}
+            <path
+              d="M 46 20 C 44 17, 40 15, 36 14"
+              stroke="#FBEAD6"
+              strokeWidth="0.7"
+              strokeLinecap="round"
+              opacity="0.55"
+            />
+            {/* Capullos/flores en las puntas y a lo largo de las ramas */}
+            <circle cx="44" cy="14" r="2.4" fill="#F0C4CB" />
+            <circle cx="24" cy="10" r="2"   fill="#F0C4CB" opacity="0.92" />
+            <circle cx="62" cy="8"  r="2"   fill="#F0C4CB" opacity="0.85" />
+            <circle cx="34" cy="14" r="1.4" fill="#F0C4CB" opacity="0.75" />
+            <circle cx="56" cy="18" r="1.5" fill="#F0C4CB" opacity="0.7" />
+            <circle cx="30" cy="12" r="1"   fill="#F0C4CB" opacity="0.6" />
+            <circle cx="52" cy="14" r="1.1" fill="#F0C4CB" opacity="0.65" />
+            {/* Punto centro rose en el capullo principal */}
+            <circle cx="44" cy="14" r="0.8" fill="#C87D87" />
+          </svg>
+
+          {/* Florcitas que salen del árbol y vuelan a la izquierda */}
           {FLOWERS.map((f, i) => (
             <span
               key={i}

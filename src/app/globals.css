@@ -51,19 +51,19 @@ input[type="radio"] {
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
-/* Florcitas volando de derecha a izquierda en la promo bar */
+/* Florcitas que salen del árbol (right: 0-60px) y vuelan a la izquierda */
 @keyframes fly-left-cw {
-  0%   { transform: translateX(20px) translateY(0)   rotate(0deg);   opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { transform: translateX(-50vw) translateY(-4px) rotate(180deg); }
-  90%  { opacity: 1; }
+  0%   { transform: translateX(-30px) translateY(0)   rotate(0deg);   opacity: 0; }
+  5%   { transform: translateX(-32px) translateY(-1px) rotate(20deg);  opacity: 1; }
+  50%  { transform: translateX(-50vw) translateY(-3px) rotate(180deg); opacity: 1; }
+  95%  { opacity: 1; }
   100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(360deg); opacity: 0; }
 }
 @keyframes fly-left-ccw {
-  0%   { transform: translateX(20px) translateY(0)   rotate(0deg);    opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { transform: translateX(-50vw) translateY(4px)  rotate(-180deg); }
-  90%  { opacity: 1; }
+  0%   { transform: translateX(-30px) translateY(0)   rotate(0deg);    opacity: 0; }
+  5%   { transform: translateX(-32px) translateY(1px)  rotate(-20deg);  opacity: 1; }
+  50%  { transform: translateX(-50vw) translateY(3px)  rotate(-180deg); opacity: 1; }
+  95%  { opacity: 1; }
   100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(-360deg); opacity: 0; }
 }
 .flying-flower-cw,
