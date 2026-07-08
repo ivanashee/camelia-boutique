@@ -11,9 +11,18 @@ export default function CartBadge() {
   return (
     <Link href="/carrito" className="relative inline-flex items-center gap-2 text-ink hover:text-rose">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        {/* Bolsa */}
         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
         <path d="M3 6h18" />
         <path d="M16 10a4 4 0 0 1-8 0" />
+        {/* Florcita adentro — 4 pétalos rose + centro champagne */}
+        <g stroke="none">
+          <ellipse cx="12"   cy="13"   rx="1"   ry="1.4" fill="#C87D87" />
+          <ellipse cx="14"   cy="15"   rx="1.4" ry="1"   fill="#C87D87" />
+          <ellipse cx="12"   cy="17"   rx="1"   ry="1.4" fill="#C87D87" />
+          <ellipse cx="10"   cy="15"   rx="1.4" ry="1"   fill="#C87D87" />
+          <circle  cx="12"   cy="15"   r="0.9"          fill="#FBEAD6" />
+        </g>
       </svg>
       {count > 0 && (
         <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-rose text-white text-[10px] font-medium flex items-center justify-center">
