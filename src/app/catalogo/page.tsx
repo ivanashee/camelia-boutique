@@ -168,7 +168,12 @@ export default async function CatalogoPage({ searchParams }: { searchParams: SP 
               <div className="text-xs text-thyme mb-4">
                 {list.length} producto{list.length === 1 ? "" : "s"} · desde {formatGs(Math.min(...list.map((p) => p.price)))}
               </div>
-              <StaggerGroup className="grid grid-cols-2 md:grid-cols-3 gap-5" stagger={0.06} amount={0.05}>
+              <StaggerGroup
+                key={`${searchParams.cat ?? ""}|${searchParams.sale ?? ""}|${searchParams.featured ?? ""}|${searchParams.q ?? ""}|${searchParams.sort ?? ""}|${searchParams.stock ?? ""}|${searchParams.min ?? ""}|${searchParams.max ?? ""}`}
+                className="grid grid-cols-2 md:grid-cols-3 gap-5"
+                stagger={0.06}
+                amount={0.05}
+              >
                 {list.map((p) => (
                   <StaggerItem key={p.id}>
                     <ProductCard p={p} />
