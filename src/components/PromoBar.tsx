@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 
 const CODE = "CAMELIA10";
 
-// Flores voladoras — sus top% caen dentro del área de la copa del árbol
-// (cluster está en y=4-22 de 40 → aprox 10%-55% del alto de la barra)
+// Flores voladoras distribuidas por todo el alto de la barra
 const FLYING = [
-  { top: "12%", size: 11, duration: 24, delay: 0,  reverse: false },
-  { top: "22%", size: 10, duration: 20, delay: 3,  reverse: true  },
-  { top: "32%", size: 12, duration: 28, delay: 6,  reverse: false },
-  { top: "42%", size: 9,  duration: 22, delay: 9,  reverse: true  },
-  { top: "18%", size: 10, duration: 26, delay: 12, reverse: false },
-  { top: "38%", size: 11, duration: 21, delay: 2,  reverse: true  },
-  { top: "28%", size: 12, duration: 23, delay: 8,  reverse: false },
-  { top: "50%", size: 10, duration: 25, delay: 14, reverse: true  },
+  { top: "10%", size: 11, duration: 24, delay: 0,  reverse: false },
+  { top: "25%", size: 10, duration: 20, delay: 3,  reverse: true  },
+  { top: "40%", size: 12, duration: 28, delay: 6,  reverse: false },
+  { top: "55%", size: 9,  duration: 22, delay: 9,  reverse: true  },
+  { top: "70%", size: 10, duration: 26, delay: 12, reverse: false },
+  { top: "20%", size: 11, duration: 21, delay: 2,  reverse: true  },
+  { top: "50%", size: 12, duration: 23, delay: 8,  reverse: false },
+  { top: "65%", size: 10, duration: 25, delay: 14, reverse: true  },
 ];
 
 export default function PromoBar() {
@@ -80,49 +79,6 @@ export default function PromoBar() {
       ) : (
         mounted && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-            {/* Arbolito estilo niños: tronco grueso doble stroke + copa densa */}
-            <svg
-              className="absolute bottom-0 right-0"
-              width="90"
-              height="40"
-              viewBox="0 0 90 40"
-              fill="none"
-            >
-              {/* Tronco: base oscura */}
-              <path
-                d="M 80 40 C 78 28, 72 18, 60 8"
-                stroke="#8B6F47"
-                strokeWidth="6"
-                strokeLinecap="round"
-                fill="none"
-              />
-              {/* Tronco: capa clara encima para dar volumen */}
-              <path
-                d="M 80 40 C 78 28, 72 18, 60 8"
-                stroke="#a8845c"
-                strokeWidth="3"
-                strokeLinecap="round"
-                fill="none"
-                opacity="0.7"
-              />
-              {/* Copa v1: 13 florcitas + 3 centros rose (menos densa, más elegante) */}
-              <circle cx="60" cy="8"  r="3.5" fill="#F0C4CB" />
-              <circle cx="52" cy="6"  r="3"   fill="#F0C4CB" />
-              <circle cx="68" cy="6"  r="3"   fill="#F0C4CB" />
-              <circle cx="46" cy="12" r="3"   fill="#F0C4CB" />
-              <circle cx="55" cy="14" r="3"   fill="#F0C4CB" />
-              <circle cx="65" cy="14" r="3"   fill="#F0C4CB" />
-              <circle cx="72" cy="12" r="3"   fill="#F0C4CB" />
-              <circle cx="42" cy="8"  r="2.5" fill="#F0C4CB" opacity="0.9" />
-              <circle cx="76" cy="8"  r="2.5" fill="#F0C4CB" opacity="0.9" />
-              <circle cx="58" cy="18" r="2.5" fill="#F0C4CB" opacity="0.85" />
-              <circle cx="48" cy="18" r="2.2" fill="#F0C4CB" opacity="0.8" />
-              <circle cx="68" cy="18" r="2.2" fill="#F0C4CB" opacity="0.8" />
-              <circle cx="60" cy="8"  r="1.4" fill="#C87D87" />
-              <circle cx="55" cy="14" r="1.2" fill="#C87D87" opacity="0.8" />
-              <circle cx="65" cy="14" r="1.2" fill="#C87D87" opacity="0.8" />
-            </svg>
-
             {/* Flores voladoras — SVG con 5 pétalos + centro rose, sin depender de font */}
             {FLYING.map((f, i) => (
               <span
