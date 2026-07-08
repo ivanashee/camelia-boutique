@@ -82,50 +82,50 @@ export default function PromoBar() {
       ) : (
         mounted && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-            {/* Sakura — rama larga marrón con clusters de flores 5-pétalos */}
+            {/* Sakura corta estilo sumi-e — rama negra + clusters compactos */}
             <svg
               className="absolute bottom-0 right-0"
-              width="220"
+              width="140"
               height="40"
-              viewBox="0 0 220 40"
+              viewBox="0 0 140 40"
               fill="none"
             >
-              {/* Rama principal — marrón oscuro con taper */}
+              {/* Rama principal — negra orgánica con taper */}
               <path
-                d="M 218 36 C 195 30, 160 26, 130 24 C 100 22, 70 20, 40 16 C 25 14, 12 12, 2 10"
-                stroke="#3a2818"
-                strokeWidth="2.4"
+                d="M 138 36 C 120 30, 100 26, 80 22 C 60 20, 42 18, 26 15"
+                stroke="#1a1108"
+                strokeWidth="2.6"
                 strokeLinecap="round"
                 fill="none"
               />
               {/* Sub-rama superior derecha */}
               <path
-                d="M 175 26 C 180 18, 188 10, 198 5"
-                stroke="#3a2818"
+                d="M 110 26 C 116 18, 122 10, 128 5"
+                stroke="#1a1108"
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 fill="none"
               />
               {/* Sub-rama que baja del medio */}
               <path
-                d="M 130 24 C 122 30, 112 34, 100 37"
-                stroke="#3a2818"
+                d="M 80 22 C 74 28, 66 32, 58 35"
+                stroke="#1a1108"
                 strokeWidth="1.6"
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Sub-rama superior izquierda */}
+              {/* Ramita corta izquierda arriba */}
               <path
-                d="M 70 20 C 60 14, 50 10, 38 6"
-                stroke="#3a2818"
-                strokeWidth="1.5"
+                d="M 42 18 C 34 12, 26 8, 18 6"
+                stroke="#1a1108"
+                strokeWidth="1.4"
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Ramita chica */}
+              {/* Ramita chica que baja izquierda */}
               <path
-                d="M 40 16 C 32 20, 22 24, 12 26"
-                stroke="#3a2818"
+                d="M 26 15 C 20 20, 12 24, 5 26"
+                stroke="#1a1108"
                 strokeWidth="1"
                 strokeLinecap="round"
                 fill="none"
@@ -134,104 +134,94 @@ export default function PromoBar() {
 
               {/* Cluster A — punta derecha (arriba) */}
               <g>
-                <circle cx="196" cy="3"  r="2" fill="#F0C4CB"/>
-                <circle cx="199" cy="4.5" r="2" fill="#F0C4CB"/>
-                <circle cx="197" cy="7" r="2" fill="#F0C4CB"/>
-                <circle cx="194" cy="7" r="2" fill="#F0C4CB"/>
-                <circle cx="193" cy="4.5" r="2" fill="#F0C4CB"/>
-                <circle cx="196" cy="5" r="0.9" fill="#a05868"/>
-                {/* Flor pequeña al lado */}
-                <circle cx="201" cy="8" r="1.4" fill="#F0C4CB"/>
-                <circle cx="203" cy="9" r="1.4" fill="#F0C4CB"/>
-                <circle cx="202" cy="11" r="1.4" fill="#F0C4CB"/>
-                <circle cx="200" cy="11" r="1.4" fill="#F0C4CB"/>
-                <circle cx="199" cy="9" r="1.4" fill="#F0C4CB"/>
-                <circle cx="201" cy="9.5" r="0.6" fill="#a05868"/>
-                {/* Capullo cerrado */}
-                <ellipse cx="190" cy="10" rx="1.2" ry="1.6" fill="#C87D87"/>
+                <circle cx="126" cy="3"   r="2" fill="#F0C4CB"/>
+                <circle cx="129" cy="4.5" r="2" fill="#F0C4CB"/>
+                <circle cx="127" cy="7"   r="2" fill="#F0C4CB"/>
+                <circle cx="124" cy="7"   r="2" fill="#F0C4CB"/>
+                <circle cx="123" cy="4.5" r="2" fill="#F0C4CB"/>
+                <circle cx="126" cy="5"   r="0.9" fill="#a05868"/>
+                <circle cx="131" cy="8"   r="1.4" fill="#F0C4CB"/>
+                <circle cx="133" cy="9"   r="1.4" fill="#F0C4CB"/>
+                <circle cx="132" cy="11"  r="1.4" fill="#F0C4CB"/>
+                <circle cx="130" cy="11"  r="1.4" fill="#F0C4CB"/>
+                <circle cx="129" cy="9"   r="1.4" fill="#F0C4CB"/>
+                <circle cx="131" cy="9.5" r="0.6" fill="#a05868"/>
+                <ellipse cx="120" cy="10" rx="1.2" ry="1.6" fill="#C87D87"/>
               </g>
 
-              {/* Cluster B — cluster principal grande (medio-arriba) */}
+              {/* Cluster B — cluster principal en el medio */}
               <g>
-                {/* Flor grande */}
-                <circle cx="140" cy="18" r="2.2" fill="#F0C4CB"/>
-                <circle cx="143" cy="20" r="2.2" fill="#F0C4CB"/>
-                <circle cx="142" cy="23" r="2.2" fill="#F0C4CB"/>
-                <circle cx="139" cy="23" r="2.2" fill="#F0C4CB"/>
-                <circle cx="137" cy="20" r="2.2" fill="#F0C4CB"/>
-                <circle cx="140" cy="21" r="1" fill="#a05868"/>
-                {/* Flor 2 arriba-izq */}
-                <circle cx="132" cy="15" r="1.8" fill="#F0C4CB"/>
-                <circle cx="134" cy="17" r="1.8" fill="#F0C4CB"/>
-                <circle cx="133" cy="19" r="1.8" fill="#F0C4CB"/>
-                <circle cx="131" cy="19" r="1.8" fill="#F0C4CB"/>
-                <circle cx="129" cy="17" r="1.8" fill="#F0C4CB"/>
-                <circle cx="132" cy="17" r="0.8" fill="#a05868"/>
-                {/* Flor 3 abajo-der */}
-                <circle cx="148" cy="21" r="1.8" fill="#F0C4CB"/>
-                <circle cx="150" cy="23" r="1.8" fill="#F0C4CB"/>
-                <circle cx="149" cy="25" r="1.8" fill="#F0C4CB"/>
-                <circle cx="147" cy="25" r="1.8" fill="#F0C4CB"/>
-                <circle cx="145" cy="23" r="1.8" fill="#F0C4CB"/>
-                <circle cx="148" cy="23" r="0.8" fill="#a05868"/>
-                {/* Capullos */}
-                <ellipse cx="125" cy="20" rx="1.2" ry="1.6" fill="#C87D87"/>
-                <ellipse cx="152" cy="16" rx="1.1" ry="1.4" fill="#C87D87" opacity="0.9"/>
+                <circle cx="90" cy="18" r="2.2" fill="#F0C4CB"/>
+                <circle cx="93" cy="20" r="2.2" fill="#F0C4CB"/>
+                <circle cx="92" cy="23" r="2.2" fill="#F0C4CB"/>
+                <circle cx="89" cy="23" r="2.2" fill="#F0C4CB"/>
+                <circle cx="87" cy="20" r="2.2" fill="#F0C4CB"/>
+                <circle cx="90" cy="21" r="1" fill="#a05868"/>
+                <circle cx="82" cy="15" r="1.8" fill="#F0C4CB"/>
+                <circle cx="84" cy="17" r="1.8" fill="#F0C4CB"/>
+                <circle cx="83" cy="19" r="1.8" fill="#F0C4CB"/>
+                <circle cx="81" cy="19" r="1.8" fill="#F0C4CB"/>
+                <circle cx="79" cy="17" r="1.8" fill="#F0C4CB"/>
+                <circle cx="82" cy="17" r="0.8" fill="#a05868"/>
+                <circle cx="98" cy="21" r="1.7" fill="#F0C4CB"/>
+                <circle cx="100" cy="23" r="1.7" fill="#F0C4CB"/>
+                <circle cx="99" cy="25" r="1.7" fill="#F0C4CB"/>
+                <circle cx="97" cy="25" r="1.7" fill="#F0C4CB"/>
+                <circle cx="95" cy="23" r="1.7" fill="#F0C4CB"/>
+                <circle cx="98" cy="23" r="0.8" fill="#a05868"/>
+                <ellipse cx="75" cy="21" rx="1.2" ry="1.6" fill="#C87D87"/>
+                <ellipse cx="104" cy="17" rx="1.1" ry="1.4" fill="#C87D87" opacity="0.9"/>
               </g>
 
               {/* Cluster C — sub-rama que baja */}
               <g>
-                <circle cx="102" cy="34" r="2" fill="#F0C4CB"/>
-                <circle cx="105" cy="35" r="2" fill="#F0C4CB"/>
-                <circle cx="103" cy="38" r="2" fill="#F0C4CB"/>
-                <circle cx="100" cy="38" r="2" fill="#F0C4CB"/>
-                <circle cx="99" cy="35" r="2" fill="#F0C4CB"/>
-                <circle cx="102" cy="36" r="0.9" fill="#a05868"/>
-                {/* Flor chica al lado */}
-                <circle cx="93" cy="32" r="1.5" fill="#F0C4CB"/>
-                <circle cx="95" cy="33.5" r="1.5" fill="#F0C4CB"/>
-                <circle cx="94" cy="35.5" r="1.5" fill="#F0C4CB"/>
-                <circle cx="92" cy="35.5" r="1.5" fill="#F0C4CB"/>
-                <circle cx="91" cy="33.5" r="1.5" fill="#F0C4CB"/>
-                <circle cx="93" cy="34" r="0.7" fill="#a05868"/>
-                <ellipse cx="110" cy="32" rx="1.1" ry="1.4" fill="#C87D87" opacity="0.9"/>
+                <circle cx="60" cy="32" r="1.9" fill="#F0C4CB"/>
+                <circle cx="63" cy="33.5" r="1.9" fill="#F0C4CB"/>
+                <circle cx="61" cy="36" r="1.9" fill="#F0C4CB"/>
+                <circle cx="58" cy="36" r="1.9" fill="#F0C4CB"/>
+                <circle cx="57" cy="33.5" r="1.9" fill="#F0C4CB"/>
+                <circle cx="60" cy="34" r="0.9" fill="#a05868"/>
+                <circle cx="52" cy="32" r="1.4" fill="#F0C4CB"/>
+                <circle cx="54" cy="33" r="1.4" fill="#F0C4CB"/>
+                <circle cx="53" cy="35" r="1.4" fill="#F0C4CB"/>
+                <circle cx="51" cy="35" r="1.4" fill="#F0C4CB"/>
+                <circle cx="50" cy="33" r="1.4" fill="#F0C4CB"/>
+                <circle cx="52" cy="33.5" r="0.6" fill="#a05868"/>
+                <ellipse cx="68" cy="30" rx="1.1" ry="1.4" fill="#C87D87" opacity="0.9"/>
               </g>
 
               {/* Cluster D — punta izquierda arriba */}
               <g>
-                <circle cx="36" cy="4" r="1.9" fill="#F0C4CB"/>
-                <circle cx="38.6" cy="5.5" r="1.9" fill="#F0C4CB"/>
-                <circle cx="37" cy="8" r="1.9" fill="#F0C4CB"/>
-                <circle cx="34" cy="8" r="1.9" fill="#F0C4CB"/>
-                <circle cx="33" cy="5.5" r="1.9" fill="#F0C4CB"/>
-                <circle cx="36" cy="6" r="0.9" fill="#a05868"/>
-                {/* Flor 2 */}
-                <circle cx="45" cy="6" r="1.6" fill="#F0C4CB"/>
-                <circle cx="47" cy="7.5" r="1.6" fill="#F0C4CB"/>
-                <circle cx="46" cy="9.5" r="1.6" fill="#F0C4CB"/>
-                <circle cx="44" cy="9.5" r="1.6" fill="#F0C4CB"/>
-                <circle cx="43" cy="7.5" r="1.6" fill="#F0C4CB"/>
-                <circle cx="45" cy="7.5" r="0.7" fill="#a05868"/>
-                <ellipse cx="28" cy="10" rx="1.1" ry="1.4" fill="#C87D87" opacity="0.85"/>
+                <circle cx="20" cy="5" r="1.9" fill="#F0C4CB"/>
+                <circle cx="22.6" cy="6.5" r="1.9" fill="#F0C4CB"/>
+                <circle cx="21" cy="9" r="1.9" fill="#F0C4CB"/>
+                <circle cx="18" cy="9" r="1.9" fill="#F0C4CB"/>
+                <circle cx="17" cy="6.5" r="1.9" fill="#F0C4CB"/>
+                <circle cx="20" cy="7" r="0.9" fill="#a05868"/>
+                <circle cx="28" cy="8" r="1.5" fill="#F0C4CB"/>
+                <circle cx="30" cy="9.5" r="1.5" fill="#F0C4CB"/>
+                <circle cx="29" cy="11.5" r="1.5" fill="#F0C4CB"/>
+                <circle cx="27" cy="11.5" r="1.5" fill="#F0C4CB"/>
+                <circle cx="26" cy="9.5" r="1.5" fill="#F0C4CB"/>
+                <circle cx="28" cy="9.5" r="0.6" fill="#a05868"/>
+                <ellipse cx="12" cy="11" rx="1.1" ry="1.4" fill="#C87D87" opacity="0.85"/>
               </g>
 
-              {/* Cluster E — abajo izquierda, ramita chica */}
+              {/* Cluster E — abajo izquierda */}
               <g>
-                <circle cx="14" cy="24" r="1.7" fill="#F0C4CB"/>
-                <circle cx="16" cy="25.5" r="1.7" fill="#F0C4CB"/>
-                <circle cx="15" cy="27.5" r="1.7" fill="#F0C4CB"/>
-                <circle cx="13" cy="27.5" r="1.7" fill="#F0C4CB"/>
-                <circle cx="12" cy="25.5" r="1.7" fill="#F0C4CB"/>
-                <circle cx="14" cy="26" r="0.8" fill="#a05868"/>
-                <ellipse cx="20" cy="22" rx="1" ry="1.3" fill="#C87D87" opacity="0.85"/>
+                <circle cx="8" cy="24" r="1.7" fill="#F0C4CB"/>
+                <circle cx="10" cy="25.5" r="1.7" fill="#F0C4CB"/>
+                <circle cx="9" cy="27.5" r="1.7" fill="#F0C4CB"/>
+                <circle cx="7" cy="27.5" r="1.7" fill="#F0C4CB"/>
+                <circle cx="6" cy="25.5" r="1.7" fill="#F0C4CB"/>
+                <circle cx="8" cy="26" r="0.8" fill="#a05868"/>
               </g>
 
-              {/* Capullos sueltos + pétalos cayendo por toda la rama */}
-              <ellipse cx="80" cy="22" rx="1" ry="1.3" fill="#C87D87" opacity="0.7"/>
-              <ellipse cx="60" cy="19" rx="0.9" ry="1.2" fill="#C87D87" opacity="0.6"/>
-              <circle cx="115" cy="30" r="1.1" fill="#F0C4CB" opacity="0.65"/>
-              <circle cx="165" cy="20" r="1" fill="#F0C4CB" opacity="0.7"/>
-              <circle cx="85" cy="8" r="0.9" fill="#F0C4CB" opacity="0.65"/>
+              {/* Capullos + pétalos sueltos */}
+              <ellipse cx="45" cy="20" rx="1" ry="1.3" fill="#C87D87" opacity="0.7"/>
+              <ellipse cx="35" cy="15" rx="0.9" ry="1.2" fill="#C87D87" opacity="0.6"/>
+              <circle cx="70" cy="26" r="1" fill="#F0C4CB" opacity="0.65"/>
+              <circle cx="115" cy="14" r="1" fill="#F0C4CB" opacity="0.7"/>
             </svg>
 
             {/* Flores voladoras — SVG con 5 pétalos + centro rose, sin depender de font */}
