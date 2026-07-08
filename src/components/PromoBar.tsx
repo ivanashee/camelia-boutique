@@ -17,7 +17,8 @@ const FLYING = [
 ];
 
 export default function PromoBar() {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false);          // estado breve (1.6s)
+  const [everCopied, setEverCopied] = useState(false);  // permanente ← Opción B
   const [dismissed, setDismissed] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -27,6 +28,7 @@ export default function PromoBar() {
     try {
       await navigator.clipboard.writeText(CODE);
       setCopied(true);
+      setEverCopied(true);
       if ("vibrate" in navigator) navigator.vibrate?.(8);
       setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -47,12 +49,13 @@ export default function PromoBar() {
           >
             <span
               className={`font-medium transition-colors ${
-                copied ? "text-blush" : "text-champagne group-hover:text-blush"
+                copied || everCopied ? "text-blush" : "text-champagne group-hover:text-blush"
               }`}
             >
               {CODE}
             </span>
-            {copied ? (
+            {everCopied ? (
+              // ✓ permanente (Opción B) — indica que el usuario ya copió el cupón
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-blush">
                 <path d="M20 6L9 17l-5-5" />
               </svg>
