@@ -51,6 +51,35 @@ input[type="radio"] {
 .admin-table td.muted { @apply text-thyme text-xs; }
 .admin-table .card-wrap { @apply bg-cream border border-champagne rounded-xl overflow-hidden shadow-sm; }
 
+/* Florcitas volando de derecha a izquierda en la promo bar */
+@keyframes fly-left-cw {
+  0%   { transform: translateX(20px) translateY(0)   rotate(0deg);   opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translateX(-50vw) translateY(-4px) rotate(180deg); }
+  90%  { opacity: 1; }
+  100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(360deg); opacity: 0; }
+}
+@keyframes fly-left-ccw {
+  0%   { transform: translateX(20px) translateY(0)   rotate(0deg);    opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translateX(-50vw) translateY(4px)  rotate(-180deg); }
+  90%  { opacity: 1; }
+  100% { transform: translateX(calc(-100vw - 40px)) translateY(0) rotate(-360deg); opacity: 0; }
+}
+.flying-flower-cw,
+.flying-flower-ccw {
+  position: absolute;
+  right: 0;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.flying-flower-cw  { animation-name: fly-left-cw;  }
+.flying-flower-ccw { animation-name: fly-left-ccw; }
+@media (prefers-reduced-motion: reduce) {
+  .flying-flower-cw, .flying-flower-ccw { animation: none; opacity: 0; }
+}
+
 /* Marquee — scroll horizontal infinito para banners/texto de fondo */
 @keyframes marquee {
   from { transform: translateX(0); }
