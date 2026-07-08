@@ -15,13 +15,13 @@ export default function CartBadge() {
         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
         <path d="M3 6h18" />
         <path d="M16 10a4 4 0 0 1-8 0" />
-        {/* Florcita adentro — 4 pétalos rose + centro champagne */}
+        {/* Florcita adentro del cuerpo de la bolsa (bajo el asa y >=14 en Y) */}
         <g stroke="none">
-          <ellipse cx="12"   cy="13"   rx="1"   ry="1.4" fill="#C87D87" />
-          <ellipse cx="14"   cy="15"   rx="1.4" ry="1"   fill="#C87D87" />
-          <ellipse cx="12"   cy="17"   rx="1"   ry="1.4" fill="#C87D87" />
-          <ellipse cx="10"   cy="15"   rx="1.4" ry="1"   fill="#C87D87" />
-          <circle  cx="12"   cy="15"   r="0.9"          fill="#FBEAD6" />
+          <ellipse cx="12"   cy="15.5" rx="0.8" ry="1.3" fill="#C87D87" />
+          <ellipse cx="13.7" cy="17"   rx="1.3" ry="0.8" fill="#C87D87" />
+          <ellipse cx="12"   cy="18.5" rx="0.8" ry="1.3" fill="#C87D87" />
+          <ellipse cx="10.3" cy="17"   rx="1.3" ry="0.8" fill="#C87D87" />
+          <circle  cx="12"   cy="17"   r="0.75"          fill="#FBEAD6" />
         </g>
       </svg>
       {count > 0 && (
