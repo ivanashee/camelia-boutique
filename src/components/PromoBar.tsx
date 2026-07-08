@@ -82,7 +82,7 @@ export default function PromoBar() {
       ) : (
         mounted && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-            {/* Sakura corta estilo sumi-e — rama negra + clusters compactos */}
+            {/* Sakura sumi-e — ramas con textura pincel + clusters compactos */}
             <svg
               className="absolute bottom-0 right-0"
               width="140"
@@ -90,46 +90,85 @@ export default function PromoBar() {
               viewBox="0 0 140 40"
               fill="none"
             >
-              {/* Rama principal — negra orgánica con taper */}
+              {/* Rama principal — capa base gruesa */}
               <path
                 d="M 138 36 C 120 30, 100 26, 80 22 C 60 20, 42 18, 26 15"
                 stroke="#1a1108"
-                strokeWidth="2.6"
+                strokeWidth="3"
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Sub-rama superior derecha */}
+              {/* Rama principal — capa 2 desplazada (efecto brush stroke) */}
+              <path
+                d="M 138 34 C 121 29, 101 25, 82 22 C 62 20, 43 17, 27 14"
+                stroke="#0f0703"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                fill="none"
+                opacity="0.75"
+              />
+              {/* Pequeñas manchas rústicas en la rama principal */}
+              <circle cx="115" cy="28" r="0.6" fill="#0f0703" opacity="0.9"/>
+              <circle cx="95" cy="24"  r="0.5" fill="#0f0703" opacity="0.85"/>
+              <circle cx="70" cy="21"  r="0.7" fill="#0f0703" opacity="0.9"/>
+              <circle cx="50" cy="18"  r="0.5" fill="#0f0703" opacity="0.85"/>
+
+              {/* Sub-rama superior derecha (con doble capa) */}
               <path
                 d="M 110 26 C 116 18, 122 10, 128 5"
                 stroke="#1a1108"
-                strokeWidth="1.8"
+                strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
+              />
+              <path
+                d="M 111 26 C 117 18, 123 10, 129 5"
+                stroke="#0f0703"
+                strokeWidth="0.9"
+                strokeLinecap="round"
+                fill="none"
+                opacity="0.7"
               />
               {/* Sub-rama que baja del medio */}
               <path
                 d="M 80 22 C 74 28, 66 32, 58 35"
                 stroke="#1a1108"
-                strokeWidth="1.6"
+                strokeWidth="1.8"
                 strokeLinecap="round"
                 fill="none"
+              />
+              <path
+                d="M 81 22 C 75 28, 67 32, 59 35"
+                stroke="#0f0703"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+                fill="none"
+                opacity="0.7"
               />
               {/* Ramita corta izquierda arriba */}
               <path
                 d="M 42 18 C 34 12, 26 8, 18 6"
                 stroke="#1a1108"
-                strokeWidth="1.4"
+                strokeWidth="1.6"
                 strokeLinecap="round"
                 fill="none"
+              />
+              <path
+                d="M 43 18 C 35 12, 27 8, 19 6"
+                stroke="#0f0703"
+                strokeWidth="0.7"
+                strokeLinecap="round"
+                fill="none"
+                opacity="0.7"
               />
               {/* Ramita chica que baja izquierda */}
               <path
                 d="M 26 15 C 20 20, 12 24, 5 26"
                 stroke="#1a1108"
-                strokeWidth="1"
+                strokeWidth="1.2"
                 strokeLinecap="round"
                 fill="none"
-                opacity="0.85"
+                opacity="0.9"
               />
 
               {/* Cluster A — punta derecha (arriba) */}
@@ -140,6 +179,9 @@ export default function PromoBar() {
                 <circle cx="124" cy="7"   r="2" fill="#F0C4CB"/>
                 <circle cx="123" cy="4.5" r="2" fill="#F0C4CB"/>
                 <circle cx="126" cy="5"   r="0.9" fill="#a05868"/>
+                <circle cx="126" cy="4"   r="0.3" fill="#f5c96e"/>
+                <circle cx="127" cy="5.5" r="0.3" fill="#f5c96e"/>
+                <circle cx="125" cy="5.5" r="0.3" fill="#f5c96e"/>
                 <circle cx="131" cy="8"   r="1.4" fill="#F0C4CB"/>
                 <circle cx="133" cy="9"   r="1.4" fill="#F0C4CB"/>
                 <circle cx="132" cy="11"  r="1.4" fill="#F0C4CB"/>
@@ -157,6 +199,11 @@ export default function PromoBar() {
                 <circle cx="89" cy="23" r="2.2" fill="#F0C4CB"/>
                 <circle cx="87" cy="20" r="2.2" fill="#F0C4CB"/>
                 <circle cx="90" cy="21" r="1" fill="#a05868"/>
+                <circle cx="90"  cy="19.8" r="0.35" fill="#f5c96e"/>
+                <circle cx="91.2" cy="21.7" r="0.35" fill="#f5c96e"/>
+                <circle cx="88.8" cy="21.7" r="0.35" fill="#f5c96e"/>
+                <circle cx="89.5" cy="20.2" r="0.25" fill="#f5c96e"/>
+                <circle cx="90.5" cy="20.2" r="0.25" fill="#f5c96e"/>
                 <circle cx="82" cy="15" r="1.8" fill="#F0C4CB"/>
                 <circle cx="84" cy="17" r="1.8" fill="#F0C4CB"/>
                 <circle cx="83" cy="19" r="1.8" fill="#F0C4CB"/>
@@ -181,6 +228,9 @@ export default function PromoBar() {
                 <circle cx="58" cy="36" r="1.9" fill="#F0C4CB"/>
                 <circle cx="57" cy="33.5" r="1.9" fill="#F0C4CB"/>
                 <circle cx="60" cy="34" r="0.9" fill="#a05868"/>
+                <circle cx="60"   cy="33"   r="0.3" fill="#f5c96e"/>
+                <circle cx="61.2" cy="34.5" r="0.3" fill="#f5c96e"/>
+                <circle cx="58.8" cy="34.5" r="0.3" fill="#f5c96e"/>
                 <circle cx="52" cy="32" r="1.4" fill="#F0C4CB"/>
                 <circle cx="54" cy="33" r="1.4" fill="#F0C4CB"/>
                 <circle cx="53" cy="35" r="1.4" fill="#F0C4CB"/>
@@ -198,6 +248,9 @@ export default function PromoBar() {
                 <circle cx="18" cy="9" r="1.9" fill="#F0C4CB"/>
                 <circle cx="17" cy="6.5" r="1.9" fill="#F0C4CB"/>
                 <circle cx="20" cy="7" r="0.9" fill="#a05868"/>
+                <circle cx="20"   cy="6"   r="0.3" fill="#f5c96e"/>
+                <circle cx="21.2" cy="7.5" r="0.3" fill="#f5c96e"/>
+                <circle cx="18.8" cy="7.5" r="0.3" fill="#f5c96e"/>
                 <circle cx="28" cy="8" r="1.5" fill="#F0C4CB"/>
                 <circle cx="30" cy="9.5" r="1.5" fill="#F0C4CB"/>
                 <circle cx="29" cy="11.5" r="1.5" fill="#F0C4CB"/>
@@ -215,6 +268,9 @@ export default function PromoBar() {
                 <circle cx="7" cy="27.5" r="1.7" fill="#F0C4CB"/>
                 <circle cx="6" cy="25.5" r="1.7" fill="#F0C4CB"/>
                 <circle cx="8" cy="26" r="0.8" fill="#a05868"/>
+                <circle cx="8"   cy="25.2" r="0.3" fill="#f5c96e"/>
+                <circle cx="9"   cy="26.6" r="0.3" fill="#f5c96e"/>
+                <circle cx="7"   cy="26.6" r="0.3" fill="#f5c96e"/>
               </g>
 
               {/* Capullos + pétalos sueltos */}
