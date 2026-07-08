@@ -105,65 +105,44 @@ export default function PromoBar() {
                 fill="none"
                 opacity="0.7"
               />
-              {/* Copa densa: 28 florcitas blush apiladas en 5 filas */}
-              {/* Corona superior */}
-              <circle cx="60" cy="4"  r="2.5" fill="#F0C4CB" />
-              <circle cx="54" cy="4"  r="2.4" fill="#F0C4CB" />
-              <circle cx="66" cy="4"  r="2.4" fill="#F0C4CB" />
-              <circle cx="48" cy="6"  r="2.4" fill="#F0C4CB" />
-              <circle cx="72" cy="6"  r="2.4" fill="#F0C4CB" />
-              {/* Fila 1 */}
-              <circle cx="60" cy="8"  r="3"   fill="#F0C4CB" />
-              <circle cx="52" cy="8"  r="2.8" fill="#F0C4CB" />
-              <circle cx="68" cy="8"  r="2.8" fill="#F0C4CB" />
-              <circle cx="44" cy="9"  r="2.5" fill="#F0C4CB" />
-              <circle cx="76" cy="9"  r="2.5" fill="#F0C4CB" />
-              {/* Fila 2 */}
-              <circle cx="56" cy="12" r="2.8" fill="#F0C4CB" />
-              <circle cx="64" cy="12" r="2.8" fill="#F0C4CB" />
-              <circle cx="48" cy="12" r="2.5" fill="#F0C4CB" />
-              <circle cx="72" cy="12" r="2.5" fill="#F0C4CB" />
-              <circle cx="42" cy="13" r="2.3" fill="#F0C4CB" opacity="0.95" />
-              {/* Fila 3 */}
-              <circle cx="60" cy="15" r="2.6" fill="#F0C4CB" />
-              <circle cx="52" cy="15" r="2.5" fill="#F0C4CB" />
-              <circle cx="68" cy="15" r="2.5" fill="#F0C4CB" />
-              <circle cx="46" cy="16" r="2.2" fill="#F0C4CB" opacity="0.92" />
-              <circle cx="74" cy="16" r="2.2" fill="#F0C4CB" opacity="0.92" />
-              {/* Fila 4 */}
-              <circle cx="56" cy="18" r="2.4" fill="#F0C4CB" opacity="0.9" />
-              <circle cx="64" cy="18" r="2.4" fill="#F0C4CB" opacity="0.9" />
-              <circle cx="50" cy="19" r="2.2" fill="#F0C4CB" opacity="0.85" />
-              <circle cx="70" cy="19" r="2.2" fill="#F0C4CB" opacity="0.85" />
-              {/* Fila 5 (más translúcida, sub-capa) */}
-              <circle cx="60" cy="21" r="2.2" fill="#F0C4CB" opacity="0.8" />
-              <circle cx="54" cy="22" r="2"   fill="#F0C4CB" opacity="0.75" />
-              <circle cx="66" cy="22" r="2"   fill="#F0C4CB" opacity="0.75" />
-              {/* Centros rose distribuidos */}
+              {/* Copa v1: 13 florcitas + 3 centros rose (menos densa, más elegante) */}
+              <circle cx="60" cy="8"  r="3.5" fill="#F0C4CB" />
+              <circle cx="52" cy="6"  r="3"   fill="#F0C4CB" />
+              <circle cx="68" cy="6"  r="3"   fill="#F0C4CB" />
+              <circle cx="46" cy="12" r="3"   fill="#F0C4CB" />
+              <circle cx="55" cy="14" r="3"   fill="#F0C4CB" />
+              <circle cx="65" cy="14" r="3"   fill="#F0C4CB" />
+              <circle cx="72" cy="12" r="3"   fill="#F0C4CB" />
+              <circle cx="42" cy="8"  r="2.5" fill="#F0C4CB" opacity="0.9" />
+              <circle cx="76" cy="8"  r="2.5" fill="#F0C4CB" opacity="0.9" />
+              <circle cx="58" cy="18" r="2.5" fill="#F0C4CB" opacity="0.85" />
+              <circle cx="48" cy="18" r="2.2" fill="#F0C4CB" opacity="0.8" />
+              <circle cx="68" cy="18" r="2.2" fill="#F0C4CB" opacity="0.8" />
               <circle cx="60" cy="8"  r="1.4" fill="#C87D87" />
-              <circle cx="52" cy="8"  r="1.2" fill="#C87D87" opacity="0.9" />
-              <circle cx="68" cy="8"  r="1.2" fill="#C87D87" opacity="0.9" />
-              <circle cx="56" cy="12" r="1"   fill="#C87D87" opacity="0.85" />
-              <circle cx="64" cy="12" r="1"   fill="#C87D87" opacity="0.85" />
-              <circle cx="60" cy="15" r="1"   fill="#C87D87" opacity="0.8" />
-              <circle cx="54" cy="4"  r="0.9" fill="#C87D87" opacity="0.85" />
-              <circle cx="66" cy="4"  r="0.9" fill="#C87D87" opacity="0.85" />
+              <circle cx="55" cy="14" r="1.2" fill="#C87D87" opacity="0.8" />
+              <circle cx="65" cy="14" r="1.2" fill="#C87D87" opacity="0.8" />
             </svg>
 
-            {/* Flores que salen volando — nacen matcheando el área de la copa */}
+            {/* Flores voladoras — SVG con 5 pétalos + centro rose, sin depender de font */}
             {FLYING.map((f, i) => (
               <span
                 key={`fly-${i}`}
                 className={f.reverse ? "flying-flower-cw" : "flying-flower-ccw"}
                 style={{
                   top: f.top,
-                  fontSize: f.size,
                   animationDuration: `${f.duration}s`,
                   animationDelay: `${f.delay}s`,
-                  color: "#F0C4CB",
+                  lineHeight: 0,
                 }}
               >
-                ✿
+                <svg width={f.size + 4} height={f.size + 4} viewBox="-10 -10 20 20">
+                  <circle cx="0"    cy="-6"   r="4"   fill="#F0C4CB" />
+                  <circle cx="5.7"  cy="-1.8" r="4"   fill="#F0C4CB" />
+                  <circle cx="3.5"  cy="4.8"  r="4"   fill="#F0C4CB" />
+                  <circle cx="-3.5" cy="4.8"  r="4"   fill="#F0C4CB" />
+                  <circle cx="-5.7" cy="-1.8" r="4"   fill="#F0C4CB" />
+                  <circle cx="0"    cy="0"    r="2.5" fill="#C87D87" />
+                </svg>
               </span>
             ))}
           </div>
