@@ -4,25 +4,17 @@ import { useEffect, useState } from "react";
 
 const CODE = "CAMELIA10";
 
-// Flores estáticas del árbol (posición fija a lo largo del tallo)
-// Sus coords sirven de "spawn point" visual para las voladoras.
-const TREE_FLOWERS = [
-  { top: "18%", right: "12px", size: 12 },
-  { top: "38%", right: "22px", size: 10 },
-  { top: "58%", right: "18px", size: 13 },
-  { top: "76%", right: "30px", size: 9  },
-];
-
-// Flores que salen volando — cada una nace cerca de una estática (top matcheando)
+// Flores voladoras — sus top% caen dentro del área de la copa del árbol
+// (cluster está en y=4-22 de 40 → aprox 10%-55% del alto de la barra)
 const FLYING = [
-  { top: "18%", size: 11, duration: 24, delay: 0,  reverse: false },
-  { top: "38%", size: 10, duration: 20, delay: 3,  reverse: true  },
-  { top: "58%", size: 12, duration: 28, delay: 6,  reverse: false },
-  { top: "76%", size: 9,  duration: 22, delay: 9,  reverse: true  },
+  { top: "12%", size: 11, duration: 24, delay: 0,  reverse: false },
+  { top: "22%", size: 10, duration: 20, delay: 3,  reverse: true  },
+  { top: "32%", size: 12, duration: 28, delay: 6,  reverse: false },
+  { top: "42%", size: 9,  duration: 22, delay: 9,  reverse: true  },
   { top: "18%", size: 10, duration: 26, delay: 12, reverse: false },
-  { top: "58%", size: 11, duration: 21, delay: 2,  reverse: true  },
-  { top: "38%", size: 12, duration: 23, delay: 8,  reverse: false },
-  { top: "76%", size: 10, duration: 25, delay: 14, reverse: true  },
+  { top: "38%", size: 11, duration: 21, delay: 2,  reverse: true  },
+  { top: "28%", size: 12, duration: 23, delay: 8,  reverse: false },
+  { top: "50%", size: 10, duration: 25, delay: 14, reverse: true  },
 ];
 
 export default function PromoBar() {
@@ -88,40 +80,77 @@ export default function PromoBar() {
       ) : (
         mounted && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-            {/* Tallo — solo una curva whiplash Art Nouveau desde el bottom-right */}
+            {/* Arbolito estilo niños: tronco grueso doble stroke + copa densa */}
             <svg
               className="absolute bottom-0 right-0"
-              width="60"
+              width="90"
               height="40"
-              viewBox="0 0 60 40"
+              viewBox="0 0 90 40"
               fill="none"
             >
+              {/* Tronco: base oscura */}
               <path
-                d="M 56 40 C 50 32, 46 24, 40 16 C 36 10, 30 6, 22 4"
-                stroke="#FBEAD6"
-                strokeWidth="1.2"
+                d="M 80 40 C 78 28, 72 18, 60 8"
+                stroke="#8B6F47"
+                strokeWidth="6"
                 strokeLinecap="round"
-                opacity="0.9"
+                fill="none"
               />
+              {/* Tronco: capa clara encima para dar volumen */}
+              <path
+                d="M 80 40 C 78 28, 72 18, 60 8"
+                stroke="#a8845c"
+                strokeWidth="3"
+                strokeLinecap="round"
+                fill="none"
+                opacity="0.7"
+              />
+              {/* Copa densa: 28 florcitas blush apiladas en 5 filas */}
+              {/* Corona superior */}
+              <circle cx="60" cy="4"  r="2.5" fill="#F0C4CB" />
+              <circle cx="54" cy="4"  r="2.4" fill="#F0C4CB" />
+              <circle cx="66" cy="4"  r="2.4" fill="#F0C4CB" />
+              <circle cx="48" cy="6"  r="2.4" fill="#F0C4CB" />
+              <circle cx="72" cy="6"  r="2.4" fill="#F0C4CB" />
+              {/* Fila 1 */}
+              <circle cx="60" cy="8"  r="3"   fill="#F0C4CB" />
+              <circle cx="52" cy="8"  r="2.8" fill="#F0C4CB" />
+              <circle cx="68" cy="8"  r="2.8" fill="#F0C4CB" />
+              <circle cx="44" cy="9"  r="2.5" fill="#F0C4CB" />
+              <circle cx="76" cy="9"  r="2.5" fill="#F0C4CB" />
+              {/* Fila 2 */}
+              <circle cx="56" cy="12" r="2.8" fill="#F0C4CB" />
+              <circle cx="64" cy="12" r="2.8" fill="#F0C4CB" />
+              <circle cx="48" cy="12" r="2.5" fill="#F0C4CB" />
+              <circle cx="72" cy="12" r="2.5" fill="#F0C4CB" />
+              <circle cx="42" cy="13" r="2.3" fill="#F0C4CB" opacity="0.95" />
+              {/* Fila 3 */}
+              <circle cx="60" cy="15" r="2.6" fill="#F0C4CB" />
+              <circle cx="52" cy="15" r="2.5" fill="#F0C4CB" />
+              <circle cx="68" cy="15" r="2.5" fill="#F0C4CB" />
+              <circle cx="46" cy="16" r="2.2" fill="#F0C4CB" opacity="0.92" />
+              <circle cx="74" cy="16" r="2.2" fill="#F0C4CB" opacity="0.92" />
+              {/* Fila 4 */}
+              <circle cx="56" cy="18" r="2.4" fill="#F0C4CB" opacity="0.9" />
+              <circle cx="64" cy="18" r="2.4" fill="#F0C4CB" opacity="0.9" />
+              <circle cx="50" cy="19" r="2.2" fill="#F0C4CB" opacity="0.85" />
+              <circle cx="70" cy="19" r="2.2" fill="#F0C4CB" opacity="0.85" />
+              {/* Fila 5 (más translúcida, sub-capa) */}
+              <circle cx="60" cy="21" r="2.2" fill="#F0C4CB" opacity="0.8" />
+              <circle cx="54" cy="22" r="2"   fill="#F0C4CB" opacity="0.75" />
+              <circle cx="66" cy="22" r="2"   fill="#F0C4CB" opacity="0.75" />
+              {/* Centros rose distribuidos */}
+              <circle cx="60" cy="8"  r="1.4" fill="#C87D87" />
+              <circle cx="52" cy="8"  r="1.2" fill="#C87D87" opacity="0.9" />
+              <circle cx="68" cy="8"  r="1.2" fill="#C87D87" opacity="0.9" />
+              <circle cx="56" cy="12" r="1"   fill="#C87D87" opacity="0.85" />
+              <circle cx="64" cy="12" r="1"   fill="#C87D87" opacity="0.85" />
+              <circle cx="60" cy="15" r="1"   fill="#C87D87" opacity="0.8" />
+              <circle cx="54" cy="4"  r="0.9" fill="#C87D87" opacity="0.85" />
+              <circle cx="66" cy="4"  r="0.9" fill="#C87D87" opacity="0.85" />
             </svg>
 
-            {/* Flores estáticas — pegadas al tallo, no se mueven */}
-            {TREE_FLOWERS.map((f, i) => (
-              <span
-                key={`static-${i}`}
-                className="absolute text-blush"
-                style={{
-                  top: f.top,
-                  right: f.right,
-                  fontSize: f.size,
-                  transform: "translateY(-50%)",
-                }}
-              >
-                ✿
-              </span>
-            ))}
-
-            {/* Flores que salen volando — nacen matcheando las estáticas y flotan a la izq */}
+            {/* Flores que salen volando — nacen matcheando el área de la copa */}
             {FLYING.map((f, i) => (
               <span
                 key={`fly-${i}`}
