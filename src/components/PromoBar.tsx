@@ -82,48 +82,56 @@ export default function PromoBar() {
       ) : (
         mounted && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-            {/* Ramita de cerezo v1 — anclada bottom-right */}
+            {/* Ramita delicada — trazos champagne + capullos blush */}
             <svg
               className="absolute bottom-0 right-0"
-              width="90"
+              width="70"
               height="40"
-              viewBox="0 0 90 40"
+              viewBox="0 0 70 40"
               fill="none"
             >
-              {/* Tronco base oscuro */}
+              {/* Rama principal con whiplash — sube desde bottom-right */}
               <path
-                d="M 80 40 C 78 28, 72 18, 60 8"
-                stroke="#8B6F47"
-                strokeWidth="6"
+                d="M 66 40 C 60 32, 54 24, 48 14"
+                stroke="#FBEAD6"
+                strokeWidth="1.4"
                 strokeLinecap="round"
-                fill="none"
+                opacity="0.95"
               />
-              {/* Tronco capa clara para volumen */}
+              {/* Sub-rama superior-izquierda */}
               <path
-                d="M 80 40 C 78 28, 72 18, 60 8"
-                stroke="#a8845c"
-                strokeWidth="3"
+                d="M 52 22 C 46 18, 38 15, 28 10"
+                stroke="#FBEAD6"
+                strokeWidth="1"
                 strokeLinecap="round"
-                fill="none"
+                opacity="0.8"
+              />
+              {/* Sub-rama superior-derecha */}
+              <path
+                d="M 58 26 C 60 22, 62 16, 66 8"
+                stroke="#FBEAD6"
+                strokeWidth="1"
+                strokeLinecap="round"
                 opacity="0.7"
               />
-              {/* Copa: 13 florcitas blush */}
-              <circle cx="60" cy="8"  r="3.5" fill="#F0C4CB" />
-              <circle cx="52" cy="6"  r="3"   fill="#F0C4CB" />
-              <circle cx="68" cy="6"  r="3"   fill="#F0C4CB" />
-              <circle cx="46" cy="12" r="3"   fill="#F0C4CB" />
-              <circle cx="55" cy="14" r="3"   fill="#F0C4CB" />
-              <circle cx="65" cy="14" r="3"   fill="#F0C4CB" />
-              <circle cx="72" cy="12" r="3"   fill="#F0C4CB" />
-              <circle cx="42" cy="8"  r="2.5" fill="#F0C4CB" opacity="0.9" />
-              <circle cx="76" cy="8"  r="2.5" fill="#F0C4CB" opacity="0.9" />
-              <circle cx="58" cy="18" r="2.5" fill="#F0C4CB" opacity="0.85" />
-              <circle cx="48" cy="18" r="2.2" fill="#F0C4CB" opacity="0.8" />
-              <circle cx="68" cy="18" r="2.2" fill="#F0C4CB" opacity="0.8" />
-              {/* 3 centros rose */}
-              <circle cx="60" cy="8"  r="1.4" fill="#C87D87" />
-              <circle cx="55" cy="14" r="1.2" fill="#C87D87" opacity="0.8" />
-              <circle cx="65" cy="14" r="1.2" fill="#C87D87" opacity="0.8" />
+              {/* Ramita chica intermedia */}
+              <path
+                d="M 50 20 C 48 17, 44 15, 40 14"
+                stroke="#FBEAD6"
+                strokeWidth="0.7"
+                strokeLinecap="round"
+                opacity="0.55"
+              />
+              {/* Capullos blush en tips + a lo largo de las ramas */}
+              <circle cx="48" cy="14" r="2.4" fill="#F0C4CB" />
+              <circle cx="28" cy="10" r="2"   fill="#F0C4CB" opacity="0.92" />
+              <circle cx="66" cy="8"  r="2"   fill="#F0C4CB" opacity="0.85" />
+              <circle cx="38" cy="14" r="1.4" fill="#F0C4CB" opacity="0.75" />
+              <circle cx="60" cy="18" r="1.5" fill="#F0C4CB" opacity="0.7" />
+              <circle cx="34" cy="12" r="1"   fill="#F0C4CB" opacity="0.6" />
+              <circle cx="56" cy="14" r="1.1" fill="#F0C4CB" opacity="0.65" />
+              {/* Centro rose en el capullo principal */}
+              <circle cx="48" cy="14" r="0.8" fill="#C87D87" />
             </svg>
 
             {/* Flores voladoras — SVG con 5 pétalos + centro rose, sin depender de font */}
